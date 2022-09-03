@@ -10,6 +10,7 @@ let Navbar = (props) => {
   ]
   let menuClick = (data) => {
     props.fromChild(data)
+    setIsActiveBurger(false)
   }
   let activatedModal = () => {
     setIsActiveBurger(!isActiveBurger())

@@ -1,9 +1,18 @@
-import { createEffect, createSignal, Switch, Match } from "solid-js";
+import { createEffect, createSignal, Switch, Match, lazy } from "solid-js";
 
 import Navbar from "./components/MainPage/Navbar";
-import About from "./components/About/About";
-import ListSurat from "./components/ListSurat/ListSurat";
-import MainPage from "./components/MainPage/MainPage";
+
+const About = lazy(async () => {
+  return import("./components/About/About");
+})
+
+const ListSurat = lazy(async () => {
+  return import("./components/ListSurat/ListSurat");
+})
+
+const MainPage = lazy(async () => {
+  return import("./components/MainPage/MainPage");
+})
 
 function App() {
   let [listPages,setListPages] = createSignal('')
