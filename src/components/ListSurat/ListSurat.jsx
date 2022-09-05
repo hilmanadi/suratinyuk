@@ -25,8 +25,10 @@ let ListSurat = () => {
         // console.log('list surat page')
     })
     return (
+        
         <>
         <Modal fromParent={modalIsActive()} fromChild={setModalIsActive} fromParentType={modalType()} fromParentText={modalText()}></Modal>
+
         <section class="hero is-link is-fullheight-with-navbar is-fluid">
                 <div class="hero-body is-flex is-align-items-center is-justify-content-center" >
                     <div class="container is-fluid has-background-danger" style={{'height':'67.5vh','overflow-y':'auto'}} >

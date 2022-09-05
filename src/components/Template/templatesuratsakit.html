@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/signature_pad.umd.min.js"></script>
+    <script src="../../signature_pad.js"></script>
     <style>
         *{
             font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
@@ -11,6 +11,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             let sp = document.getElementById("signature-pad");
+            console.log(sp)
             var signaturePad = new SignaturePad(sp,{
                 backgroundColor: 'rgba(255, 255, 255, 0)',
                 penColor: 'rgb(0, 0, 0)'

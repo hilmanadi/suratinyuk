@@ -1,7 +1,8 @@
-import {createSignal,createEffect,Show} from "solid-js";
+import {createSignal,createEffect,Show,onMount} from "solid-js";
 
 
 let Modal = (props) => {
+    let signaturepads;
     let [isActive,setIsActive] = createSignal(false)
     let [notelpPengguna,setNoTelpPengguna] = createSignal(0)
     let [umurPengguna,setUmurPengguna] = createSignal(0)
@@ -55,8 +56,40 @@ let Modal = (props) => {
         console.log(props.fromParentType)
     }
     createEffect(()=>{
+        // if(pr)
+        if(props.fromParent){
+            if(signaturepads==''|| signaturepads==null || signaturepads==undefined){
+                console.log('skipped')
+            }else{
+                let signaturePad = new SignaturePad(signaturepads,{
+                    backgroundColor: 'rgba(255, 255, 255, 0)',
+                    penColor: 'rgb(0, 0, 0)'
+                });
+            }
+            // console.log(signaturepads)
+            // console.log(document.getElementById('cok'))
+            // console.log(props.fromParent)
+            
+        }
+        // console.log('aku effect')
+       
+        // console.log(props.fromParent)
         setModalType(props.fromParentType)
         setIsActive(props.fromParent)
+        // console.log(signaturepads)
+        // console.log(signaturepads)
+        
+        
+    })
+
+    onMount(()=>{
+        // console.log('aku unmount')
+        // console.log(props.fromParent)
+        ``
+        // console.log(signaturepads)
+
+        // let sp = document.getElementById("signature-pad");
+        // console.log(sp)
     })
 
     return (
@@ -181,6 +214,14 @@ let Modal = (props) => {
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
                             <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Cek
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <canvas ref={signaturepads} id="cok"></canvas>
                         </div>
                     </div>
                 </Show>
