@@ -1,5 +1,6 @@
 import {createEffect,createSignal} from "solid-js"
-import Modal from "../MainPage/Modal";
+import Modal from "../MainPage/Modal"
+import { toast } from 'bulma-toast'
 
 let ListSurat = () => {
     let [modalIsActive,setModalIsActive] = createSignal(false)

@@ -1,4 +1,5 @@
 import {createSignal,createEffect,Show} from "solid-js";
+import { toast } from 'bulma-toast'
 
 let Modal = (props) => {
     let signaturepads
@@ -51,51 +52,207 @@ let Modal = (props) => {
     }
     
     let lamaranKerja = async () => {
-        let neew = signaturepads.toDataURL('image/png')
-        await fetch('../src/components/Template/templatelamarankerja.html')
-        .then(response=>{
-            return response.text()
-        })
-        .then(respdata=>{
-            let temp = ''
-
-            for(let i=0;i<listSuratLamaran().length;i++){
-                temp += '<li>'+listSuratLamaran()[i]+'</li>'
-            }
-
-            let newdoc = respdata
-            .replaceAll('{{nama_pengguna}}',namaPengguna())
-            .replaceAll('{{tempat_lahir}}',tempatLahir())
-            .replaceAll('{{umur}}',umurPengguna())
-            .replaceAll('{{pendidikan}}',pendidikanTerakhir())
-            .replaceAll('{{jurusan}}',jurusanPengguna())
-            .replaceAll('{{universitas}}',universitasPengguna())
-            .replaceAll('{{no_telp}}',notelpPengguna())
-            .replaceAll('{{email}}',emailPengguna())
-            .replaceAll('{{alamat}}',alamatPengguna())
-            .replaceAll('{{kota_input}}',kotaPerusahaan())
-            .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
-            .replaceAll('{{alamat}}',alamatPengguna())
-            .replaceAll('{{lowongan}}',asalLowongan())
-            .replaceAll('{{bagian_dilamar}}',posisiDilamar())
-            .replaceAll('{{tanda_tangan}}',neew)
-            .replaceAll('{{tgl_lahir}}',tanggalLahir())
-            .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
-            .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
-            .replaceAll('{{list_data}}',temp)
-
-            let w = window.open()
-            w.document.write(newdoc)
-            setTimeout(function(){
-                w.print()
-                w.close()    
-                props.fromChild(false)
-            },500)
-        })
+        if(namaPengguna()==''){
+            toast({
+                message: 'Nama Pengguna Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(tempatLahir()==''){
+            toast({
+                message: 'Tempat Lahir Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(tanggalLahir()==''){
+            toast({
+                message: 'Tanggal Lahir Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(umurPengguna()==0){
+            toast({
+                message: 'Umur Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(pendidikanTerakhir()==''){
+            toast({
+                message: 'Pendidikan Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }   
+        else if(jurusanPengguna()==''){
+            toast({
+                message: 'Jurusan Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(universitasPengguna()==''){
+            toast({
+                message: 'Universitas Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(notelpPengguna()==0){
+            toast({
+                message: 'No Telp Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(emailPengguna()==''){
+            toast({
+                message: 'Email Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(alamatPengguna()==''){
+            toast({
+                message: 'Alamat Pengguna Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(listSuratLamaran().length==0){
+            toast({
+                message: 'Jumlah Berkas Lamaran Harus Lebih Dari 1',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(namaPerusahaan()==''){
+            toast({
+                message: 'Nama Perusahaan  Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(kotaPerusahaan()==''){
+            toast({
+                message: 'Kota Perusahaan Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(asalLowongan()==''){
+            toast({
+                message: 'Sumber Lowongan Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(posisiDilamar()==''){
+            toast({
+                message: 'Posisi Dilamar Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(kotaPembuatan()==''){
+            toast({
+                message: 'Kota Pembuatan Surat Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else if(tanggalPembuatan()==''){
+            toast({
+                message: 'Tanggal Pembuatan Surat Wajib Diisi',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+            })
+        }
+        else{
+            let neew = signaturepads.toDataURL('image/png')
+            await fetch('../src/components/Template/templatelamarankerja.html')
+            .then(response=>{
+                return response.text()
+            })
+            .then(respdata=>{
+                let temp = ''
+    
+                for(let i=0;i<listSuratLamaran().length;i++){
+                    temp += '<li>'+listSuratLamaran()[i]+'</li>'
+                }
+    
+                let newdoc = respdata
+                .replaceAll('{{nama_pengguna}}',namaPengguna())
+                .replaceAll('{{tempat_lahir}}',tempatLahir())
+                .replaceAll('{{umur}}',umurPengguna())
+                .replaceAll('{{pendidikan}}',pendidikanTerakhir())
+                .replaceAll('{{jurusan}}',jurusanPengguna())
+                .replaceAll('{{universitas}}',universitasPengguna())
+                .replaceAll('{{no_telp}}',notelpPengguna())
+                .replaceAll('{{email}}',emailPengguna())
+                .replaceAll('{{alamat}}',alamatPengguna())
+                .replaceAll('{{kota_input}}',kotaPerusahaan())
+                .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
+                .replaceAll('{{alamat}}',alamatPengguna())
+                .replaceAll('{{lowongan}}',asalLowongan())
+                .replaceAll('{{bagian_dilamar}}',posisiDilamar())
+                .replaceAll('{{tanda_tangan}}',neew)
+                .replaceAll('{{tgl_lahir}}',tanggalLahir())
+                .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
+                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+                .replaceAll('{{list_data}}',temp)
+    
+                let w = window.open()
+                w.document.write(newdoc)
+                setTimeout(function(){
+                    w.print()
+                    w.close()    
+                    closeModal()
+                },500)
+            })
+        }
     }
 
     let closeModal = () => {
-       props.fromChild(false)
+        setListSuratLamaran([])
+        setNoTelpPengguna(0)
+        setUmurPengguna(0)
+        setModalType('')
+        setNamaPengguna('')
+        setTempatLahir('')
+        setPendidikanTerakhir('')
+        setJurusanPengguna('')
+        setUniversitasPengguna('')
+        setEmailPengguna('')
+        setAlamatPengguna('')
+        setNamaPerusahaan('')
+        setKotaPerusahaan('')
+        setAsalLowongan('')
+        setPosisiDilamar('')
+        setTanggalLahir('')
+        setTanggalPembuatan('')
+        setKotaPembuatan ('')
+        props.fromChild(false)
     }
 
     let cekIt = () => {
@@ -212,20 +369,21 @@ let Modal = (props) => {
                             <textarea className="textarea" onChange={(e)=>setAlamatPengguna(e.target.value)}></textarea>
                         </div>
                     </div>
-                    
-                    <div className="columns">
-                        <div className="column is-3 is-flex is-align-items-center">
-                            Berkas Lamaran
+                    <Show when={listSuratLamaran().length<9}>
+                        <div className="columns">
+                            <div className="column is-3 is-flex is-align-items-center">
+                                Berkas Lamaran
+                            </div>
+                            <div className="column is-flex is-align-items-center is-justify-content-center">
+                                <input type="text" className="input" ref={lamaranset}/>
+                            </div>
+                            <div className="column">
+                                <button className="button" onClick={()=>addBerkas(lamaranset.value)}>
+                                    Tambahkan Berkas
+                                </button>
+                            </div>
                         </div>
-                        <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text" className="input" ref={lamaranset}/>
-                        </div>
-                        <div className="column">
-                            <button className="button" onClick={()=>addBerkas(lamaranset.value)}>
-                                abc
-                            </button>
-                        </div>
-                    </div>
+                    </Show>
                     <Show when={listSuratLamaran().length >0}>
                     <div className="columns">
                         <div className="column">
