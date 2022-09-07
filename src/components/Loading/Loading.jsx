@@ -1,4 +1,5 @@
 import {createSignal,createEffect} from "solid-js"
+
 let Loading = () => {
     let [textLoading,setTextLoading] = createSignal('')
 
