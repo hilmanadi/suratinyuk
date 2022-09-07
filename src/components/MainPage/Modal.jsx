@@ -1,5 +1,4 @@
-import {createSignal,createEffect,Show,onMount} from "solid-js";
-
+import {createSignal,createEffect,Show} from "solid-js";
 
 let Modal = (props) => {
     let signaturepads;
@@ -18,8 +17,27 @@ let Modal = (props) => {
     let [kotaPerusahaan,setKotaPerusahaan] = createSignal('')
     let [asalLowongan,setAsalLowongan] = createSignal('')
     let [posisiDilamar,setPosisiDilamar] = createSignal('')
+    let [tanggalLahir,setTanggalLahir] = createSignal('')
+    let [tanggalPembuatan,setTanggalPembuatan] = createSignal('')
+    let [kotaPembuatan,setKotaPembuatan] = createSignal ('')
 
+    let getTanggalDetail = (data,tag) => {
+        let bulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"]
+        let datee = new Date(data)
+        let month = datee.getMonth()
+        let tanggal = datee.getDate()
+        let bulanfix = bulan[month]
+        let year = datee.getFullYear()
+        let newdata = tanggal + ' '+bulanfix+' '+year
+        if(tag=='lahir'){
+            setTanggalLahir(newdata)
+        }else{
+            setTanggalPembuatan(newdata)
+        }
+    }
+    
     let lamaranKerja = async () => {
+        let neew = signaturepads.toDataURL('image/png')
         await fetch('../src/components/Template/templatelamarankerja.html')
         .then(response=>{
             return response.text()
@@ -40,23 +58,30 @@ let Modal = (props) => {
             .replaceAll('{{alamat}}',alamatPengguna())
             .replaceAll('{{lowongan}}',asalLowongan())
             .replaceAll('{{bagian_dilamar}}',posisiDilamar())
+            .replaceAll('{{tanda_tangan}}',neew)
+            .replaceAll('{{tgl_lahir}}',tanggalLahir())
+            .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
+            .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
 
-            console.log(newdoc)
-            let w = window.open();
-            w.document.write(newdoc);
-            w.print();
-            w.close();
-            // props.fromChild(false)
+            let w = window.open()
+            w.document.write(newdoc)
+            setTimeout(function(){
+                w.print()
+                w.close()    
+                props.fromChild(false)
+            },500)
         })
     }
+
     let closeModal = () => {
        props.fromChild(false)
     }
+
     let cekIt = () => {
         console.log(props.fromParentType)
     }
+
     createEffect(()=>{
-        // if(pr)
         if(props.fromParent){
             if(signaturepads==''|| signaturepads==null || signaturepads==undefined){
                 console.log('skipped')
@@ -66,30 +91,9 @@ let Modal = (props) => {
                     penColor: 'rgb(0, 0, 0)'
                 });
             }
-            // console.log(signaturepads)
-            // console.log(document.getElementById('cok'))
-            // console.log(props.fromParent)
-            
         }
-        // console.log('aku effect')
-       
-        // console.log(props.fromParent)
         setModalType(props.fromParentType)
         setIsActive(props.fromParent)
-        // console.log(signaturepads)
-        // console.log(signaturepads)
-        
-        
-    })
-
-    onMount(()=>{
-        // console.log('aku unmount')
-        // console.log(props.fromParent)
-        ``
-        // console.log(signaturepads)
-
-        // let sp = document.getElementById("signature-pad");
-        // console.log(sp)
     })
 
     return (
@@ -121,6 +125,14 @@ let Modal = (props) => {
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
                             <input type="text"  className="input" onChange={(e)=>setTempatLahir(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">   
+                            Tanggal Lahir
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'lahir')}/>
                         </div>
                     </div>
                     <div className="columns">
@@ -216,15 +228,36 @@ let Modal = (props) => {
                             <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
                         </div>
                     </div>
-                    <div className="columns">
-                        <div className="column is-3 is-flex is-align-items-center">
-                            Cek
-                        </div>
-                        <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <canvas ref={signaturepads} id="cok"></canvas>
-                        </div>
-                    </div>
                 </Show>
+                <div className="columns">
+                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                    DATA PEMBUATAN SURAT
+                    </div>
+                </div>
+                <div className="columns">
+                    <div className="column is-3 is-flex is-align-items-center">
+                        Kota Pembuatan Surat
+                    </div>
+                    <div className="column is-flex is-align-items-center is-justify-content-center">
+                        <input type="text"  className="input" onChange={(e)=>setKotaPembuatan(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="columns">
+                    <div className="column is-3 is-flex is-align-items-center">
+                        Tanggal Pembuatan Surat
+                    </div>
+                    <div className="column is-flex is-align-items-center is-justify-content-center">
+                        <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'pembuatan')}/>
+                    </div>
+                </div>
+                <div className="columns">
+                    <div className="column is-3 is-flex is-align-items-center">
+                        Tanda Tangan
+                    </div>
+                    <div className="column is-flex is-align-items-center is-justify-content-center" >
+                        <canvas ref={signaturepads} id="cok" style={{'border':'thin solid lightgrey','border-radius':'5px'}}></canvas>
+                    </div>
+                </div>
             </section>
             <footer class="modal-card-foot">
            

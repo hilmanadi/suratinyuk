@@ -3,6 +3,7 @@ import {createEffect,createSignal} from "solid-js"
 let MainPage = () => {
     let [headerContent,setHeaderContent] = createSignal('SELAMAT DATANG DI APLIKASI') 
     let [bodyContent,setBodyContent] = createSignal('SURATIN YUK')
+
     createEffect(()=>{
 
     })
