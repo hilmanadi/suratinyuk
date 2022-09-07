@@ -1,7 +1,9 @@
 import {createSignal,createEffect,Show} from "solid-js";
 
 let Modal = (props) => {
-    let signaturepads;
+    let signaturepads
+    let lamaranset
+    let [listSuratLamaran,setListSuratLamaran] = createSignal([])
     let [isActive,setIsActive] = createSignal(false)
     let [notelpPengguna,setNoTelpPengguna] = createSignal(0)
     let [umurPengguna,setUmurPengguna] = createSignal(0)
@@ -36,6 +38,18 @@ let Modal = (props) => {
         }
     }
     
+    let addBerkas = (data) => {
+        setListSuratLamaran([...listSuratLamaran(),data])
+        console.log(listSuratLamaran())
+        lamaranset.value = ''
+    }
+
+    let delBerkas = (data) => {
+        let temp = [...listSuratLamaran()]
+        temp.splice(data,1)
+        setListSuratLamaran(temp)
+    }
+    
     let lamaranKerja = async () => {
         let neew = signaturepads.toDataURL('image/png')
         await fetch('../src/components/Template/templatelamarankerja.html')
@@ -43,6 +57,12 @@ let Modal = (props) => {
             return response.text()
         })
         .then(respdata=>{
+            let temp = ''
+
+            for(let i=0;i<listSuratLamaran().length;i++){
+                temp += '<li>'+listSuratLamaran()[i]+'</li>'
+            }
+
             let newdoc = respdata
             .replaceAll('{{nama_pengguna}}',namaPengguna())
             .replaceAll('{{tempat_lahir}}',tempatLahir())
@@ -62,6 +82,7 @@ let Modal = (props) => {
             .replaceAll('{{tgl_lahir}}',tanggalLahir())
             .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
             .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+            .replaceAll('{{list_data}}',temp)
 
             let w = window.open()
             w.document.write(newdoc)
@@ -191,6 +212,46 @@ let Modal = (props) => {
                             <textarea className="textarea" onChange={(e)=>setAlamatPengguna(e.target.value)}></textarea>
                         </div>
                     </div>
+                    
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Berkas Lamaran
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text" className="input" ref={lamaranset}/>
+                        </div>
+                        <div className="column">
+                            <button className="button" onClick={()=>addBerkas(lamaranset.value)}>
+                                abc
+                            </button>
+                        </div>
+                    </div>
+                    <Show when={listSuratLamaran().length >0}>
+                    <div className="columns">
+                        <div className="column">
+                            List Berkas Surat Lamaran
+                        </div>
+                        <div className="column">
+                            <ul>
+                                <For each={listSuratLamaran()}>{
+                                    (sl,i)=>
+                                    <li>
+                                        <div className="columns">
+                                            <div className="column is-3 is-flex is-align-items-center is-justify-content-center">
+                                                {i()+1} {sl}
+                                            </div>
+                                            <div className="column">
+                                                <a onClick={()=>delBerkas(i())}>cek</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                </For>
+                            </ul>
+                        </div>
+                    </div>
+                    </Show>
+                   
                     <div className="columns">
                         <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
                             DATA PERUSAHAAN
