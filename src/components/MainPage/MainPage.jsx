@@ -1,8 +1,9 @@
 import {createEffect,createSignal} from "solid-js"
 
 let MainPage = () => {
-    let [headerContent,setHeaderContent] = createSignal('SELAMAT DATANG DI APLIKASI') 
-    let [bodyContent,setBodyContent] = createSignal('SURATIN YUK')
+    let [headerContent,setHeaderContent] = createSignal('SELAMAT DATANG') 
+    let [bodyContent,setBodyContent] = createSignal('DI APLIKASI')
+    let [footerContent,setFooterContent] = createSignal('SURATIN YUK!')
 
     createEffect(()=>{
 
@@ -10,19 +11,29 @@ let MainPage = () => {
 
     return(
         <>
-            <section class="hero is-link is-fullheight-with-navbar is-fluid">
+            <section class="hero is-fullheight-with-navbar is-fluid">
                 <div class="hero-body is-flex is-align-items-center is-justify-content-center" >
-                    <div class="container is-fluid has-background-danger" >
+                    <div class="container is-fluid" >
+                        <div className="columns">
+                            <div className="column is-flex is-justify-content-center is-align-items-center">
+                                <img src="/src/assets/images/suratinyuk.png" alt="" />
+                            </div>
+                        </div>
                         <div className="columns" >
                             <div className="column">
                                 <div className="columns">
-                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-3 has-text-centered-mobile">
                                         {headerContent}
                                     </div>
                                 </div>
                                 <div className="columns">
-                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-4">
                                         {bodyContent}
+                                    </div>
+                                </div>
+                                <div className="columns">
+                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-5">
+                                        {footerContent}
                                     </div>
                                 </div>
                             </div>

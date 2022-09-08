@@ -23,6 +23,18 @@ let Modal = (props) => {
     let [tanggalLahir,setTanggalLahir] = createSignal('')
     let [tanggalPembuatan,setTanggalPembuatan] = createSignal('')
     let [kotaPembuatan,setKotaPembuatan] = createSignal ('')
+    let [jabatanPengguna,setJabatanPengguna] = createSignal('')
+    let [tglAwalSakit,setTglAwalSakit] = createSignal('')
+    let [tglAkhirSakit,setTglAkhirSakit] = createSignal('')
+
+    let toasted  = (pesan) => {
+        return toast({
+            message: pesan,
+            type: 'is-danger',
+            dismissible: true,
+            pauseOnHover: true,
+        })
+    }
 
     let getTanggalDetail = (data,tag) => {
         let bulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"]
@@ -32,8 +44,13 @@ let Modal = (props) => {
         let bulanfix = bulan[month]
         let year = datee.getFullYear()
         let newdata = tanggal + ' '+bulanfix+' '+year
+
         if(tag=='lahir'){
             setTanggalLahir(newdata)
+        }else if(tag=='awalsakit'){
+            setTglAwalSakit(newdata)
+        }else if(tag=='akhirsakit'){
+            setTglAkhirSakit(newdata)
         }else{
             setTanggalPembuatan(newdata)
         }
@@ -53,140 +70,55 @@ let Modal = (props) => {
     
     let lamaranKerja = async () => {
         if(namaPengguna()==''){
-            toast({
-                message: 'Nama Pengguna Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom Nama Pengguna Wajib Diisi')
         }
         else if(tempatLahir()==''){
-            toast({
-                message: 'Tempat Lahir Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom Tempat LahirWajib Diisi')
         }
         else if(tanggalLahir()==''){
-            toast({
-                message: 'Tanggal Lahir Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom Tanggal LahirWajib Diisi')
         }
         else if(umurPengguna()==0){
-            toast({
-                message: 'Umur Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom UmurWajib Diisi')
         }
         else if(pendidikanTerakhir()==''){
-            toast({
-                message: 'Pendidikan Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom PendidikanWajib Diisi')
         }   
         else if(jurusanPengguna()==''){
-            toast({
-                message: 'Jurusan Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom JurusanWajib Diisi')
         }
         else if(universitasPengguna()==''){
-            toast({
-                message: 'Universitas Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom UniversitasWajib Diisi')
         }
         else if(notelpPengguna()==0){
-            toast({
-                message: 'No Telp Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom No TelpWajib Diisi')
         }
         else if(emailPengguna()==''){
-            toast({
-                message: 'Email Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom EmailWajib Diisi')
         }
         else if(alamatPengguna()==''){
-            toast({
-                message: 'Alamat Pengguna Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kolom Alamat PenggunaWajib Diisi')
         }
         else if(listSuratLamaran().length==0){
-            toast({
-                message: 'Jumlah Berkas Lamaran Harus Lebih Dari 1',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Jumlah Berkas Lamaran Harus Lebih Dari 1')
         }
         else if(namaPerusahaan()==''){
-            toast({
-                message: 'Nama Perusahaan  Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Nama Perusahaan  Wajib Diisi')
         }
         else if(kotaPerusahaan()==''){
-            toast({
-                message: 'Kota Perusahaan Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kota Perusahaan Wajib Diisi')
         }
         else if(asalLowongan()==''){
-            toast({
-                message: 'Sumber Lowongan Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Sumber Lowongan Wajib Diisi')
         }
         else if(posisiDilamar()==''){
-            toast({
-                message: 'Posisi Dilamar Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Posisi Dilamar Wajib Diisi')
         }
         else if(kotaPembuatan()==''){
-            toast({
-                message: 'Kota Pembuatan Surat Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Kota Pembuatan Surat Wajib Diisi')
         }
         else if(tanggalPembuatan()==''){
-            toast({
-                message: 'Tanggal Pembuatan Surat Wajib Diisi',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-            })
+            toasted('Tanggal Pembuatan Surat Wajib Diisi')
         }
         else{
             let neew = signaturepads.toDataURL('image/png')
@@ -233,6 +165,58 @@ let Modal = (props) => {
         }
     }
 
+    let suratSakit = async () => {
+        if(namaPengguna()==''){
+            toasted('Kolom Nama Pengguna Wajib Diisi')
+        }else if(jabatanPengguna()==''){
+            toasted('Kolom Jabatan Wajib Diisi')
+        }else if(posisiDilamar()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }else if(namaPerusahaan()==''){
+            toasted('Kolom Perusahaan Wajib Diisi')
+        }else if(tglAwalSakit()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }else if(tglAkhirSakit()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }else if(kotaPembuatan()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }else if(tanggalPembuatan()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }else{
+            let neew = signaturepads.toDataURL('image/png')
+            await fetch('../src/components/Template/templatesuratsakit.html')
+            .then(response=>{
+                return response.text()
+            })
+            .then(respdata=>{
+                let temptanggal = ''
+                if(tglAwalSakit()==tglAkhirSakit()){                    
+                    temptanggal = tglAwalSakit()
+                }else{
+                    temptanggal = tglAwalSakit() + ' - ' + tglAkhirSakit()
+                }
+                let newdoc = respdata
+                .replaceAll('{{nama_pengguna}}',namaPengguna())
+                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+                .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
+                .replaceAll('{{tanggal_sakit}}',temptanggal)
+                .replaceAll('{{bagian_dilamar}}',posisiDilamar())
+                .replaceAll('{{jabatan_pengguna}}',jabatanPengguna())
+                .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
+                .replaceAll('{{tanda_tangan}}',neew)
+
+                let w = window.open()
+                w.document.write(newdoc)
+
+                setTimeout(function(){
+                    w.print()
+                    w.close()    
+                    closeModal()
+                },500)
+            })
+        }
+    }
+
     let closeModal = () => {
         setListSuratLamaran([])
         setNoTelpPengguna(0)
@@ -252,11 +236,10 @@ let Modal = (props) => {
         setTanggalLahir('')
         setTanggalPembuatan('')
         setKotaPembuatan ('')
+        setJabatanPengguna('')
+        setTglAwalSakit('')
+        setTglAkhirSakit('')
         props.fromChild(false)
-    }
-
-    let cekIt = () => {
-        console.log(props.fromParentType)
     }
 
     createEffect(()=>{
@@ -279,7 +262,7 @@ let Modal = (props) => {
             <div class="modal-background "></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">{props.fromParentText}</p>
+                    <p class="modal-card-title has-text-weight-bold">{props.fromParentText}</p>
                     <button class="delete" aria-label="close" onClick={()=>closeModal()}></button>
                 </header>
             <section class="modal-card-body">
@@ -369,6 +352,7 @@ let Modal = (props) => {
                             <textarea className="textarea" onChange={(e)=>setAlamatPengguna(e.target.value)}></textarea>
                         </div>
                     </div>
+
                     <Show when={listSuratLamaran().length<9}>
                         <div className="columns">
                             <div className="column is-3 is-flex is-align-items-center">
@@ -378,12 +362,13 @@ let Modal = (props) => {
                                 <input type="text" className="input" ref={lamaranset}/>
                             </div>
                             <div className="column">
-                                <button className="button" onClick={()=>addBerkas(lamaranset.value)}>
+                                <button className="button is-primary has-text-weight-bold" onClick={()=>addBerkas(lamaranset.value)}>
                                     Tambahkan Berkas
                                 </button>
                             </div>
                         </div>
                     </Show>
+
                     <Show when={listSuratLamaran().length >0}>
                     <div className="columns">
                         <div className="column">
@@ -399,7 +384,7 @@ let Modal = (props) => {
                                                 {i()+1} {sl}
                                             </div>
                                             <div className="column">
-                                                <a onClick={()=>delBerkas(i())}>cek</a>
+                                                <a onClick={()=>delBerkas(i())}>Batal</a>
                                             </div>
                                         </div>
                                     </li>
@@ -409,7 +394,7 @@ let Modal = (props) => {
                         </div>
                     </div>
                     </Show>
-                   
+
                     <div className="columns">
                         <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
                             DATA PERUSAHAAN
@@ -448,6 +433,71 @@ let Modal = (props) => {
                         </div>
                     </div>
                 </Show>
+
+                <Show when={modalType()=='izinsakit'}>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DIRI
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Jabatan Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Posisi Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA PERUSAHAAN
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Perusahaan
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DETAIL SURAT
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Pengajuan Tanggal Sakit
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'awalsakit')}/>
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            -
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'akhirsakit')}/>
+                        </div>
+                    </div>
+                </Show>
+
                 <div className="columns">
                     <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
                     DATA PEMBUATAN SURAT
@@ -483,15 +533,14 @@ let Modal = (props) => {
             <Show
                 when={modalType() == 'lamarkerja'}
             >
-                <button class="button is-primary" onClick={()=>lamaranKerja()}>Cetak Lamaran Kerja</button>
+                <button class="button is-primary has-text-weight-bold" onClick={()=>lamaranKerja()}>Cetak Lamaran Kerja</button>
             </Show>
             <Show
                 when={modalType() == 'izinsakit'}
             >
-                <button class="button is-primary" onClick={()=>suratSakit()}>Cetak Surat Sakit </button>
+                <button class="button is-primary has-text-weight-bold" onClick={()=>suratSakit()}>Cetak Surat Sakit </button>
             </Show>
-                {/* <button className="button is-primary" onClick={()=>cekIt()}>asa</button> */}
-                <button class="button" onClick={()=>closeModal()}>Cancel</button>
+                <button class="button is-warning has-text-weight-bold" onClick={()=>closeModal()}>Cancel</button>
             </footer>
             </div>
         </div>

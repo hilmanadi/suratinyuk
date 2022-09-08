@@ -26,12 +26,12 @@ let ListSurat = () => {
         <>
             <Modal fromParent={modalIsActive()} fromChild={setModalIsActive} fromParentType={modalType()} fromParentText={modalText()}></Modal>
 
-            <section class="hero is-link is-fullheight-with-navbar is-fluid">
+            <section class="hero is-fullheight-with-navbar is-fluid">
                     <div class="hero-body is-flex is-align-items-center is-justify-content-center" >
-                        <div class="container is-fluid has-background-danger" style={{'height':'67.5vh','overflow-y':'auto'}} >
+                        <div class="container is-fluid p-5" style={{'height':'67.5vh','overflow-y':'auto','border':'solid 3.5px black','border-radius':'7.5px'}} >
                         <For each={listItem}>
                             {(data,index)=>
-                                <div class="card mb-1 mt-1">
+                                <div class="card mb-2 mt-2">
                                     <div class="card-content">
                                         <div className="columns">
                                             <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
@@ -41,7 +41,7 @@ let ListSurat = () => {
                                     </div>
                                     <footer class="card-footer">
                                         <p class="card-footer-item">
-                                            <button class="button is-warning" onClick={(e)=>{
+                                            <button class="button is-warning has-text-weight-bold" onClick={(e)=>{
                                                 getModal(data)
                                             }}>
                                                 Edit

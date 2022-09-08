@@ -2,27 +2,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../../signature_pad.js"></script>
     <style>
         *{
             font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            let sp = document.getElementById("signature-pad");
-            console.log(sp)
-            var signaturePad = new SignaturePad(sp,{
-                backgroundColor: 'rgba(255, 255, 255, 0)',
-                penColor: 'rgb(0, 0, 0)'
-            });
-        });
-    </script>
 </head>
 <body style="padding:7.5px;margin:0;">
     <div style="height: 3vh;width:100%;">
-        <div style="height: 100%;width:25%;float: right;background-color: aqua;display: flex;justify-content: center;align-items: center;">
-            Malang, 31 Agustus 2022
+        <div style="height: 100%;width:40%;float: right;background-color: aqua;display: flex;justify-content: flex-end;align-items: center;">
+            {{kota_pembuatan_surat}}, {{tanggal_dibuat}}
         </div>
     </div>
     <div style="height:2.5vh;background-color: blueviolet;display: flex;align-items: center;margin-top: 2.5em;">
@@ -51,7 +40,7 @@
         Yth. Bapak/Ibu Personalia
     </div>
     <div style="height:2.5vh;background-color: blueviolet;display: flex;align-items: center;">
-        PG. Kebon Agung Malang
+        {{nama_perusahaan}}
     </div>
     <div style="height:2.5vh;background-color: blueviolet;display: flex;align-items: center;">
         Di tempat,
@@ -70,7 +59,7 @@
             : 
         </div>
         <div style="height: 100%;box-sizing: border-box;width: 80%;">
-            Ivan R Putra
+            {{nama_pengguna}}
         </div>
     </div>
     <div style="height:2.5vh;background-color: blueviolet;display: flex;align-items: center;">
@@ -81,7 +70,7 @@
             : 
         </div>
         <div style="height: 100%;box-sizing: border-box;width: 80%;">
-            Karyawan
+            {{jabatan_pengguna}}
         </div>
     </div>
     <div style="height:2.5vh;background-color: blueviolet;display: flex;align-items: center;">
@@ -92,27 +81,24 @@
             : 
         </div>
         <div style="height: 100%;box-sizing: border-box;width: 80%;">
-            PDE
+            {{bagian_dilamar}}
         </div>
     </div>
     <div style="height:2.5vh;background-color: blueviolet;display: flex;align-items: center;margin-top:2em;">
-        Bermaksud untuk mengajukan izin tidak masuk kerja pada hari Senin, 21 Maret 2022, Dikarenakan sakit.
+        Bermaksud untuk mengajukan izin tidak masuk kerja pada tanggal {{tanggal_sakit}}, Dikarenakan sakit.
     </div>
     <div style="height:2.5vh;background-color: blueviolet;display: flex;align-items: center;margin-top:1.5em;">
         Demikian surat ini saya buat dengan sebenarnya, Atas perhatian dan pengertiannya, saya ucapkan terima kasih.
     </div>
-    <div style="height:20vh;background-color: blueviolet;margin-top:4em;width: 25%;float: right;">
-        <div style="width: 100%;height: 25%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
-            Malang, 11 Februari 2022
+    <div style="height:20vh;background-color: blueviolet;margin-top:4em;width: 40%;float: right;">
+        <div style="width: 100%;height: 25%;box-sizing: border-box;display: flex;align-items: center;justify-content: flex-end;">
+            {{kota_pembuatan_surat}}, {{tanggal_dibuat}}
         </div>
         <div style="width: 100%;height: 50%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
+            <img src="{{tanda_tangan}}" alt="" style="height: 100%;width: 100%;">
         </div>
         <div style="width: 100%;height: 25%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
-            <u>Ivan Reynaldi Putra</u>
+            <u>{{nama_pengguna}}</u>
         </div>
     </div>
-
-    <div class="go"  style="width: 300px;border: 2px solid red;">
-        <canvas id="signature-pad"></canvas>
-      </div>
 </body>

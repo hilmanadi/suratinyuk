@@ -23,8 +23,8 @@ let Navbar = (props) => {
   return (
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" onClick={()=>menuClick('mainpage')}>
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>
+        <a class="navbar-item has-text-weight-bold" onClick={()=>menuClick('mainpage')}>
+          <img src="../../../src/assets/images/suratinyuk.png" alt="" /> SURATIN YUK!
         </a>
         <a role="button" class={`navbar-burger ${isActiveBurger() ? "is-active" : "" }`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={()=>activatedModal()}>
           <span aria-hidden="true"></span>
@@ -37,7 +37,7 @@ let Navbar = (props) => {
         <div class="navbar-start">
           <For each={listMenuNavbar}>
             {(data,index)=>
-              <a class="navbar-item" onClick={() => menuClick(data.action)}>
+              <a class="navbar-item has-text-weight-bold" onClick={() => menuClick(data.action)}>
                 {data.menu}
               </a>
             }
