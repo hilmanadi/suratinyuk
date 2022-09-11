@@ -26,6 +26,9 @@ let Modal = (props) => {
     let [jabatanPengguna,setJabatanPengguna] = createSignal('')
     let [tglAwalSakit,setTglAwalSakit] = createSignal('')
     let [tglAkhirSakit,setTglAkhirSakit] = createSignal('')
+    let [tglAwalIzin,setTglAwalIzin] = createSignal('')
+    let [tglAkhirIzin,setTglAkhirIzin] = createSignal('')
+    let [tglPengunduranDiri,setTglPengunduranDiri] = createSignal('')
 
     let toasted  = (pesan) => {
         return toast({
@@ -51,6 +54,12 @@ let Modal = (props) => {
             setTglAwalSakit(newdata)
         }else if(tag=='akhirsakit'){
             setTglAkhirSakit(newdata)
+        }else if(tag=='awalizin'){
+            setTglAwalIzin(newdata)
+        }else if(tag=='akhirizin'){
+            setTglAkhirIzin(newdata)
+        }else if(tag=='resign'){
+            setTglPengunduranDiri(newdata)
         }else{
             setTanggalPembuatan(newdata)
         }
@@ -164,6 +173,63 @@ let Modal = (props) => {
             })
         }
     }
+    
+    let reSign = async () => {
+        if(namaPengguna()==''){
+            toasted('Kolom Nama Wajib Diisi')
+        }
+        else if(jabatanPengguna()==''){
+            toasted('Kolom Jabatan Wajib Diisi')
+        }
+        else if(posisiDilamar()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }
+        else if(namaPerusahaan()==''){
+            toasted('Kolom Perusahaan Wajib Diisi')
+        }
+        else if(tempatLahir()==''){
+            toasted('Kolom Tanggal Lahir Wajib Diisi')
+        }
+        else if(tanggalLahir()==''){
+            toasted('Tanggal Akhir Wajib Diisi')
+        }
+        else if(namaPerusahaan()==''){
+            toasted('Kota Pembuatan Wajib Diisi')
+        }
+        else if(kotaPembuatan()==''){
+            toasted('Kota Pembuatan Surat Wajib Diisi')
+        }
+        else if(tanggalPembuatan()==''){
+            toasted('Tanggal Pembuatan Surat Wajib Diisi')
+        }
+        else{
+            let neew = signaturepads.toDataURL('image/png')
+            await fetch('../src/components/Template/templatesuratresign.html')
+            .then(response=>{
+                return response.text()
+            })
+            .then(respdata=>{
+                let newdoc = respdata
+                .replaceAll('{{nama_pengguna}}',namaPengguna())
+                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+                .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
+                .replaceAll('{{tanggal_sakit}}',temptanggal)
+                .replaceAll('{{bagian_dilamar}}',posisiDilamar())
+                .replaceAll('{{jabatan_pengguna}}',jabatanPengguna())
+                .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
+                .replaceAll('{{tanda_tangan}}',neew)
+
+                let w = window.open()
+                w.document.write(newdoc)
+
+                setTimeout(function(){
+                    w.print()
+                    w.close()    
+                    closeModal()
+                },500)
+            })
+        }
+    }
 
     let suratSakit = async () => {
         if(namaPengguna()==''){
@@ -175,13 +241,13 @@ let Modal = (props) => {
         }else if(namaPerusahaan()==''){
             toasted('Kolom Perusahaan Wajib Diisi')
         }else if(tglAwalSakit()==''){
-            toasted('Kolom Posisi Wajib Diisi')
+            toasted('Tanggal Awal Wajib Diisi')
         }else if(tglAkhirSakit()==''){
-            toasted('Kolom Posisi Wajib Diisi')
+            toasted('Tanggal Akhir Wajib Diisi')
         }else if(kotaPembuatan()==''){
-            toasted('Kolom Posisi Wajib Diisi')
+            toasted('Kota Pembuatan Wajib Diisi')
         }else if(tanggalPembuatan()==''){
-            toasted('Kolom Posisi Wajib Diisi')
+            toasted('Tanggal Pembuatan Wajib Diisi')
         }else{
             let neew = signaturepads.toDataURL('image/png')
             await fetch('../src/components/Template/templatesuratsakit.html')
@@ -217,6 +283,58 @@ let Modal = (props) => {
         }
     }
 
+    let suratTidakMasukKerja = async () => {
+        if(namaPengguna()==''){
+            toasted('Kolom Nama Pengguna Wajib Diisi')
+        }else if(jabatanPengguna()==''){
+            toasted('Kolom Jabatan Wajib Diisi')
+        }else if(posisiDilamar()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }else if(namaPerusahaan()==''){
+            toasted('Kolom Perusahaan Wajib Diisi')
+        }else if(tglAwalIzin()==''){
+            toasted('Tanggal Awal Izin Wajib Diisi')
+        }else if(tglAkhirIzin()==''){
+            toasted('Tanggal Akhir Izin Wajib Diisi')
+        }else if(kotaPembuatan()==''){
+            toasted('Kota Pembuatan Surat Wajib Diisi')
+        }else if(tanggalPembuatan()==''){
+            toasted('Tanggal Pembuatan Surat Wajib Diisi')
+        }else{
+            let neew = signaturepads.toDataURL('image/png')
+            await fetch('../src/components/Template/templateizinkerja.html')
+            .then(response=>{
+                return response.text()
+            })
+            .then(respdata=>{
+                let temptanggal = ''
+                if(tglAwalIzin()==tglAkhirIzin()){                    
+                    temptanggal = tglAwalIzin()
+                }else{
+                    temptanggal = tglAwalIzin() + ' - ' + tglAkhirIzin()
+                }
+                let newdoc = respdata
+                .replaceAll('{{nama_pengguna}}',namaPengguna())
+                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+                .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
+                .replaceAll('{{tanggal_izin}}',temptanggal)
+                .replaceAll('{{bagian_dilamar}}',posisiDilamar())
+                .replaceAll('{{jabatan_pengguna}}',jabatanPengguna())
+                .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
+                .replaceAll('{{tanda_tangan}}',neew)
+
+                let w = window.open()
+                w.document.write(newdoc)
+
+                setTimeout(function(){
+                    w.print()
+                    w.close()    
+                    closeModal()
+                },500)
+            })
+        }
+    }
+
     let closeModal = () => {
         setListSuratLamaran([])
         setNoTelpPengguna(0)
@@ -235,10 +353,12 @@ let Modal = (props) => {
         setPosisiDilamar('')
         setTanggalLahir('')
         setTanggalPembuatan('')
-        setKotaPembuatan ('')
+        setKotaPembuatan('')
         setJabatanPengguna('')
         setTglAwalSakit('')
         setTglAkhirSakit('')
+        setTglAwalIzin('')
+        setTglAkhirIzin('')
         props.fromChild(false)
     }
 
@@ -498,6 +618,145 @@ let Modal = (props) => {
                     </div>
                 </Show>
 
+                <Show when={modalType()=='izintidakmasukkerja'}>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DIRI
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Jabatan Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Posisi Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA PERUSAHAAN
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Perusahaan
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DETAIL SURAT
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Pengajuan Tanggal Izin
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'awalizin')}/>
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            -
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'akhirizin')}/>
+                        </div>
+                    </div>
+                </Show>
+
+                <Show when={modalType()=='resign'}>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DIRI
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Jabatan Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Posisi Anda
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">   
+                            Tempat Lahir
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setTempatLahir(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">   
+                            Tanggal Lahir
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'lahir')}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA PERUSAHAAN
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Perusahaan
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA PENGUNDURAN DIRI
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Tanggal Pengunduran Diri
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'resign')}/>
+                        </div>
+                    </div>
+                    
+                </Show>
+
                 <div className="columns">
                     <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
                     DATA PEMBUATAN SURAT
@@ -516,7 +775,7 @@ let Modal = (props) => {
                         Tanggal Pembuatan Surat
                     </div>
                     <div className="column is-flex is-align-items-center is-justify-content-center">
-                        <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'pembuatan')}/>
+                        <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'pembuatan')} />
                     </div>
                 </div>
                 <div className="columns">
@@ -531,6 +790,11 @@ let Modal = (props) => {
             <footer class="modal-card-foot">
            
             <Show
+                when={modalType() == 'resign'}
+            >
+                <button class="button is-primary has-text-weight-bold" onClick={()=>reSign()}>Cetak Lamaran Kerja</button>
+            </Show>
+            <Show
                 when={modalType() == 'lamarkerja'}
             >
                 <button class="button is-primary has-text-weight-bold" onClick={()=>lamaranKerja()}>Cetak Lamaran Kerja</button>
@@ -539,6 +803,11 @@ let Modal = (props) => {
                 when={modalType() == 'izinsakit'}
             >
                 <button class="button is-primary has-text-weight-bold" onClick={()=>suratSakit()}>Cetak Surat Sakit </button>
+            </Show>
+            <Show
+                when={modalType() == 'izintidakmasukkerja'}
+            >
+                 <button class="button is-primary has-text-weight-bold" onClick={()=>suratTidakMasukKerja()}>Cetak Surat Tdk Masuk Kerja </button>
             </Show>
                 <button class="button is-warning has-text-weight-bold" onClick={()=>closeModal()}>Cancel</button>
             </footer>

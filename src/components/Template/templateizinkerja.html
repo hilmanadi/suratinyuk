@@ -10,7 +10,7 @@
 </head>
 <body style="padding:7.5px;margin:0;">
     <div style="width: 50%;float: right;background-color: aqua;display: flex;align-items:center;justify-content: flex-end;">
-        Malang, 11 Februari 2022
+        {{kota_pembuatan_surat}}, {{tanggal_dibuat}}
     </div>
     <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top: 5vh;">
         <div style="width: 10%;height: 100%;display: flex;align-items: center;">
@@ -19,10 +19,11 @@
         <div style="width: 2.5%;height: 100%;display: flex;align-items: center;">
             :
         </div>
+        <div>
             Permohonan Izin Tidak Masuk Kerja
         </div>
     </div>
-    <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top:2.5px">
+    <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;">
         <div style="width: 10%;height: 100%;display: flex;align-items: center;">
             Lampiran
         </div>
@@ -46,7 +47,12 @@
     </div>
     <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top: 5px;">
         <div style="width: 100%;height: 100%;display: flex;align-items: center;">
-            Kepada Yth,
+            {{nama_perusahaan}}
+        </div>
+    </div>
+    <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top: 5px;">
+        <div style="width: 100%;height: 100%;display: flex;align-items: center;">
+            Di Tempat,
         </div>
     </div>
 
@@ -68,7 +74,7 @@
             :
         </div>
         <div style="width: 82.5%;height: 100%;display: flex;align-items: center;justify-content: flex-start;">
-            Uhuy
+            {{nama_pengguna}}
         </div>
     </div>
     <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top: 5px;">
@@ -79,7 +85,7 @@
             :
         </div>
         <div style="width: 82.5%;height: 100%;display: flex;align-items: center;justify-content: flex-start;">
-            Karyawan
+            {{jabatan_pengguna}}
         </div>
     </div>
     <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top: 5px;">
@@ -90,12 +96,12 @@
             :
         </div>
         <div style="width: 82.5%;height: 100%;display: flex;align-items: center;justify-content: flex-start;">
-            PDE
+            {{bagian_dilamar}}
         </div>
     </div>
     <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top: 30px;">
         <div style="width: 100%;height: 100%;display: flex;align-items: center;">
-            &emsp;&emsp;&emsp;&emsp;Bersama surat ini bermaksud mengajukan permohonan izin untuk tidak masuk kerja dikarenakan melakukan pernikahan, pada tanggal 20-Desember-2023 sampai 23-Desember-2023.
+            &emsp;&emsp;&emsp;&emsp;Bersama surat ini bermaksud mengajukan permohonan izin untuk tidak masuk kerja dikarenakan melakukan pernikahan, pada tanggal {{tanggal_izin}}.
         </div>
     </div>
     <div style="width: 100%;display: flex;align-items: center;background-color: aquamarine;margin-top: 30px;">
@@ -108,6 +114,7 @@
             &emsp;&emsp;&emsp;&emsp;Atas perhatian dan izin yang diberikan, saya mengucapkan terima kasih.
         </div>
     </div>
+    <div style="height:10vh;background-color: blueviolet;margin-top:4em;width: 40%;float: right;">
         <div style="height:20%;width: 100%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
             Hormat Saya,
         </div>

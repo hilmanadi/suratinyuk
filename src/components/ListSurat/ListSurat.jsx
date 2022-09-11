@@ -11,6 +11,9 @@ let ListSurat = () => {
     let listItem = [
         {"name":"SURAT LAMARAN KERJA","action":"lamarkerja"},
         {"name":"SURAT IZIN SAKIT","action":"izinsakit"},
+        {"name":"SURAT IZIN TIDAK MASUK KERJA","action":"izintidakmasukkerja"},
+        {"name":"SURAT RESIGN","action":"resign"},
+
     ]
 
     let getModal = (data) => {
