@@ -256,7 +256,7 @@ let Modal = (props) => {
             toasted('Tanggal Pembuatan Wajib Diisi')
         }else{
             let neew = signaturepads.toDataURL('image/png')
-            await fetch('../src/components/Template/templatesuratsakit.html')
+            await fetch('./templatesuratsakit.html')
             .then(response=>{
                 return response.text()
             })
