@@ -29,6 +29,7 @@ let Modal = (props) => {
     let [tglAwalIzin,setTglAwalIzin] = createSignal('')
     let [tglAkhirIzin,setTglAkhirIzin] = createSignal('')
     let [tglPengunduranDiri,setTglPengunduranDiri] = createSignal('')
+    let [alasanIzin,setAlasanIzin] = createSignal('')
 
     let toasted  = (pesan) => {
         return toast({
@@ -67,7 +68,6 @@ let Modal = (props) => {
     
     let addBerkas = (data) => {
         setListSuratLamaran([...listSuratLamaran(),data])
-        console.log(listSuratLamaran())
         lamaranset.value = ''
     }
 
@@ -195,6 +195,8 @@ let Modal = (props) => {
         }
         else if(namaPerusahaan()==''){
             toasted('Kota Pembuatan Wajib Diisi')
+        }else if(tglPengunduranDiri()==''){
+            toasted('Tanggal Pengunduran Diri Wajib Diisi')
         }
         else if(kotaPembuatan()==''){
             toasted('Kota Pembuatan Surat Wajib Diisi')
@@ -211,12 +213,16 @@ let Modal = (props) => {
             .then(respdata=>{
                 let newdoc = respdata
                 .replaceAll('{{nama_pengguna}}',namaPengguna())
-                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
-                .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
-                .replaceAll('{{tanggal_sakit}}',temptanggal)
                 .replaceAll('{{bagian_dilamar}}',posisiDilamar())
                 .replaceAll('{{jabatan_pengguna}}',jabatanPengguna())
                 .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
+                .replaceAll('{{tanggal_pengunduran}}',tglPengunduranDiri())
+                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+                .replaceAll('{{tanggal_pembuatan_surat}}',tanggalPembuatan())
+                .replaceAll('{{tempat_lahir}}',tempatLahir())
+                .replaceAll('{{tanggal_lahir}}',tanggalLahir())
+                .replaceAll('{{alamat}}',alamatPengguna())
+
                 .replaceAll('{{tanda_tangan}}',neew)
 
                 let w = window.open()
@@ -296,6 +302,8 @@ let Modal = (props) => {
             toasted('Tanggal Awal Izin Wajib Diisi')
         }else if(tglAkhirIzin()==''){
             toasted('Tanggal Akhir Izin Wajib Diisi')
+        }else if(alasanIzin()==''){
+            toasted('Alasan Izin Wajib Diisi')
         }else if(kotaPembuatan()==''){
             toasted('Kota Pembuatan Surat Wajib Diisi')
         }else if(tanggalPembuatan()==''){
@@ -321,6 +329,7 @@ let Modal = (props) => {
                 .replaceAll('{{bagian_dilamar}}',posisiDilamar())
                 .replaceAll('{{jabatan_pengguna}}',jabatanPengguna())
                 .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
+                .replaceAll('{{alasan}}',alasanIzin())
                 .replaceAll('{{tanda_tangan}}',neew)
 
                 let w = window.open()
@@ -680,6 +689,14 @@ let Modal = (props) => {
                             <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'akhirizin')}/>
                         </div>
                     </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Alasan
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <textarea className="textarea" onChange={(e)=>setAlasanIzin(e.target.value)}></textarea>
+                        </div>
+                    </div>
                 </Show>
 
                 <Show when={modalType()=='resign'}>
@@ -751,7 +768,7 @@ let Modal = (props) => {
                             Tanggal Pengunduran Diri
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'resign')}/>
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'resign')}/>
                         </div>
                     </div>
                     
