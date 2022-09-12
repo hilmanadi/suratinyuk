@@ -131,7 +131,7 @@ let Modal = (props) => {
         }
         else{
             let neew = signaturepads.toDataURL('image/png')
-            await fetch('../src/components/Template/templatelamarankerja.html')
+            await fetch('./templatelamarankerja.html')
             .then(response=>{
                 return response.text()
             })
@@ -206,7 +206,7 @@ let Modal = (props) => {
         }
         else{
             let neew = signaturepads.toDataURL('image/png')
-            await fetch('../src/components/Template/templatesuratresign.html')
+            await fetch('./templatesuratresign.html')
             .then(response=>{
                 return response.text()
             })
@@ -310,7 +310,7 @@ let Modal = (props) => {
             toasted('Tanggal Pembuatan Surat Wajib Diisi')
         }else{
             let neew = signaturepads.toDataURL('image/png')
-            await fetch('../src/components/Template/templateizinkerja.html')
+            await fetch('./templateizinkerja.html')
             .then(response=>{
                 return response.text()
             })
