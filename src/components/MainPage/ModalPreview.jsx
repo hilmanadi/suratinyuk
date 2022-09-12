@@ -9,14 +9,14 @@ let ModalPreview = (props) => {
     }
     createEffect(()=>{
         setIsActive(props.fromParent)
-        setImagePath('../src/assets/images/'+props.fromParentType+'.PNG')
+        setImagePath('./public/'+props.fromParentType+'.PNG')
     })
     return (
         <>
         <div className={`modal ${isActive() ? "is-active":""}`}>
             <div class="modal-background"></div>
             <div class="modal-content">
-                <p class="image is-4by3">
+                <p class="image is-square">
                     <img src={imagePath()} alt=""/>
                 </p>
             </div>
