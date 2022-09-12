@@ -16,7 +16,7 @@ let MainPage = () => {
                     <div class="container is-fluid" >
                         <div className="columns">
                             <div className="column is-flex is-justify-content-center is-align-items-center">
-                                <img src="/src/assets/images/suratinyuk.png" alt="" />
+                                <img src="./suratinyuk.png" alt="" />
                             </div>
                         </div>
                         <div className="columns" >
