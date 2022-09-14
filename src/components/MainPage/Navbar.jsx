@@ -24,7 +24,7 @@ let Navbar = (props) => {
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item has-text-weight-bold" onClick={()=>menuClick('mainpage')}>
-          <img src="../../../src/assets/images/suratinyuk.png" alt="" /> SURATIN YUK!
+          <img src="./suratinyuk.png" alt="" /> SURATIN YUK!
         </a>
         <a role="button" class={`navbar-burger ${isActiveBurger() ? "is-active" : "" }`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={()=>activatedModal()}>
           <span aria-hidden="true"></span>

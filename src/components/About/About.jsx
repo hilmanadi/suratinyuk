@@ -59,31 +59,37 @@ let About = () => {
                             </div>
                             <div className="column">
                                 <div className="columns">
-                                    <div className="column">
+                                   <div className="column">
                                         <div className="columns">
-                                            <div className="column is-2 has-text-centered-mobile has-text-weight-bold is-flex is-align-items-center is-justify-content-center">
+                                            <div className="column is-flex is-align-items-center is-justify-content-center has-text-centered-mobile has-text-weight-bold is-size-5">
                                                 Developer
                                             </div>
                                         </div>
                                         <div className="columns">
-                                            <div className="column has-text-centered-mobile has-text-weight-bold">
-                                                Hilman Adi Kartika
+                                            <div className="column is-flex is-align-items-center is-justify-content-center">
+                                                Hilman Adi K.
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                                <div className="columns">
+                                    <div className="column">
+                                        <div className="columns">
+                                            <div className="column is-flex is-justify-content-center is-align-items-center has-text-centered-mobile has-text-weight-bold is-size-5">
+                                                Mail
+                                            </div>
+                                        </div>
+                                        <div className="columns">
+                                            <div className="column is-flex is-align-items-center is-justify-content-center has-text-centered-mobile">
+                                                hilmanadi1995@gmail.com
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="columns">
-                                    <div className="column is-2 has-text-centered-mobile has-text-weight-bold">
-                                        Mail
-                                    </div>
-                                    <div className="column has-text-centered-mobile has-text-weight-bold">
-                                        hilmanadi1995@gmail.com
-                                    </div>
-                                </div>
-                                <div className="columns">
                                     <div className="column">
                                         <div className="columns">
-                                            <div className="column is-flex is-justify-content-center is-align-items-center has-text-centered-mobile has-text-weight-bold">                                                
+                                            <div className="column is-flex is-justify-content-center is-align-items-center has-text-centered-mobile has-text-weight-bold is-size-5">                                                
                                                 My Social
                                             </div>  
                                         </div>

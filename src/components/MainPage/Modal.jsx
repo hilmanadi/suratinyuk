@@ -395,6 +395,21 @@ let Modal = (props) => {
                     <button class="delete" aria-label="close" onClick={()=>closeModal()}></button>
                 </header>
             <section class="modal-card-body">
+                <article class="message is-warning">
+                    <div class="message-header">
+                        <p>Perhatian</p>
+                    </div>
+                    <div class="message-body has-text-weight-bold">
+                        <ol>
+                            <li>
+                                Data inputan anda akan hilang, setelah tombol cetak anda tekan
+                            </li>
+                            <li>
+                                Hati-hati dengan kolom tanda-tangan dikarenakan, tombol clear tanda-tangan dalam progress
+                            </li>
+                        </ol>
+                    </div>
+                </article>
                 <Show when={modalType() == 'lamarkerja'}>
                     <div className="columns">
                         <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">

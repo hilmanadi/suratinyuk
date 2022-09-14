@@ -2,8 +2,8 @@ import {createEffect,createSignal} from "solid-js"
 
 let MainPage = () => {
     let [headerContent,setHeaderContent] = createSignal('SELAMAT DATANG') 
-    let [bodyContent,setBodyContent] = createSignal('DI APLIKASI')
-    let [footerContent,setFooterContent] = createSignal('SURATIN YUK!')
+    let [bodyContent,setBodyContent] = createSignal('DI APLIKASI, SURATIN YUKS!!')
+    let [footerContent,setFooterContent] = createSignal('Yuk mulai buat dan cetak suratmu disini !!')
 
     createEffect(()=>{
 
@@ -22,7 +22,7 @@ let MainPage = () => {
                         <div className="columns" >
                             <div className="column">
                                 <div className="columns">
-                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-3 has-text-centered-mobile">
+                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-1 has-text-centered-mobile">
                                         {headerContent}
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@ let MainPage = () => {
                                     </div>
                                 </div>
                                 <div className="columns">
-                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-5">
+                                    <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
                                         {footerContent}
                                     </div>
                                 </div>

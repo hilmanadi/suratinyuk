@@ -57,7 +57,7 @@ let ListSurat = () => {
                                             <button className="button is-link has-text-weight-bold ml-1" onClick={(e)=>{
                                                 previewImage(data)
                                             }}>
-                                                Preview
+                                                Contoh
                                             </button>
                                         </p>
                                     </footer>
