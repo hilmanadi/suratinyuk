@@ -1,11 +1,17 @@
+<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            color : black
+        }
+    </style>
 </head>
 <body style="padding:7.5px;margin:0;">
-    <div style="width: 50%;float: right;display: flex;align-items: center;justify-content: flex-end;">
-        {{kota_pembuatan_surat}}, {{tanggal_pembuatan_surat}}
+    <div style="width: 50%;float: right;display: flex;align-items: center;justify-content: flex-end;padding-right:10px;">
+        {{kps}}, {{tps}}
     </div>
     <div style="width: 100%;float: right;height: 2.75%;margin-top:10px">
         Kepada Yth,
@@ -27,14 +33,14 @@
         Saya yang bertanda tangan di bawah ini :
     </div>
 
-    <div style="width: 100%;float: right;height: 2.75%;margin-top:10px;">
+    <div style="width: 100%;height: 2.75%;margin-top:10px;display:flex;">
         <div style="height: 100%;width: 30%;box-sizing: border-box;float: left;padding-left: 35px;display: flex;align-items: center;">
             Nama
         </div>
-        <div style="height: 100%;width: 5%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;float: left;">
-            :
+        <div style="height: 100%;width: 5%;box-sizing: border-box;display: flex;align-items: center;justify-content:center;">
+            <span>:</span>
         </div>
-        <div style="height: 100%;width: 65%;box-sizing: border-box;float: left;display: flex;align-items: center;">
+        <div style="height: 100%;width: 65%;box-sizing: border-box;display: flex;align-items: center;">
             {{nama_pengguna}}
         </div>
     </div>
@@ -44,7 +50,7 @@
             Tempat, Tanggal Lahir
         </div>
         <div style="height: 100%;width: 5%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;float: left;">
-            :
+            <span>:</span>
         </div>
         <div style="height: 100%;width: 65%;box-sizing: border-box;float: left;display: flex;align-items: center;">
             {{tempat_lahir}}, {{tanggal_lahir}}
@@ -57,19 +63,19 @@
             Jabatan
         </div>
         <div style="height: 100%;width: 5%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;float: left;">
-            :
+            <span>:</span>
         </div>
         <div style="height: 100%;width: 65%;box-sizing: border-box;float: left;display: flex;align-items: center;">
             {{jabatan_pengguna}}
         </div>
     </div>
 
-    <div style="width: 100%;float: right;height: 2.75%;">
+    <div style="width: 100%;float: right;height: 2.75%;display: flex;">
         <div style="height: 100%;width: 30%;box-sizing: border-box;float: left;padding-left: 35px;display: flex;align-items: center;">
             Bagian
         </div>
         <div style="height: 100%;width: 5%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;float: left;">
-            :
+            <span>:</span>
         </div>
         <div style="height: 100%;width: 65%;box-sizing: border-box;float: left;display: flex;align-items: center;">
             {{bagian_dilamar}}
@@ -88,7 +94,7 @@
         &emsp; &emsp;Demikian surat ini saya buat dan serahkan dengan sebena-benarnya tanpa paksaan orang lain, semoga dapat diterima oleh Bapak/Ibu.
     </div>
 
-    <div style="height:13.5vh;width: 25%;box-sizing: border-box;margin-top:0.25em;float: right;">
+    <div style="height:13.5vh;width: 25%;box-sizing: border-box;margin-top:0.25em;float: right;margin-right:10px;">
         <div style="height:20%;width: 100%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
             Hormat Saya,
         </div>
@@ -102,3 +108,4 @@
     
 
 </body>
+</html>

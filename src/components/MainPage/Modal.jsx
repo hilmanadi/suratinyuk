@@ -31,6 +31,23 @@ let Modal = (props) => {
     let [tglPengunduranDiri,setTglPengunduranDiri] = createSignal('')
     let [alasanIzin,setAlasanIzin] = createSignal('')
 
+    let cekOs = () =>{
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if (userAgent.includes("HUAWEI")) {
+            return 'huawei'
+        } else if (userAgent.includes("Android")) {
+            // alert('ancok')
+            return 'android'
+        } else if (userAgent.includes("iPhone")) {
+            return 'iphone'
+        } else {
+            if (/windows phone/i.test(userAgent)) {
+                return 'windowsphone'
+            }else{
+                return 'pc'
+            }
+        }
+    }
     let toasted  = (pesan) => {
         return toast({
             message: pesan,
@@ -211,28 +228,40 @@ let Modal = (props) => {
                 return response.text()
             })
             .then(respdata=>{
+                console.log(window.innerWidth)
                 let newdoc = respdata
                 .replaceAll('{{nama_pengguna}}',namaPengguna())
                 .replaceAll('{{bagian_dilamar}}',posisiDilamar())
                 .replaceAll('{{jabatan_pengguna}}',jabatanPengguna())
                 .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
                 .replaceAll('{{tanggal_pengunduran}}',tglPengunduranDiri())
-                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
-                .replaceAll('{{tanggal_pembuatan_surat}}',tanggalPembuatan())
+                .replaceAll('{{kps}}',kotaPembuatan())
+                .replaceAll('{{tps}}',tanggalPembuatan())
                 .replaceAll('{{tempat_lahir}}',tempatLahir())
                 .replaceAll('{{tanggal_lahir}}',tanggalLahir())
                 .replaceAll('{{alamat}}',alamatPengguna())
 
                 .replaceAll('{{tanda_tangan}}',neew)
+                let osUser = cekOs()
+                if(osUser=='pc'){
+                    let w = window.open()
+                    w.document.write(newdoc)
 
-                let w = window.open()
-                w.document.write(newdoc)
-
-                setTimeout(function(){
-                    w.print()
-                    w.close()    
-                    closeModal()
-                },500)
+                    setTimeout(function(){
+                        w.print()
+                        w.close()    
+                        closeModal()
+                    },500)
+                }else{
+                    var opt = {
+                        margin:       0.5,
+                        filename:     'myfile.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 1},
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    }
+                    html2pdf().set(opt).from(newdoc).save()
+                }
             })
         }
     }
