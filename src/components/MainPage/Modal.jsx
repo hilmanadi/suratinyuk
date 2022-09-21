@@ -36,7 +36,6 @@ let Modal = (props) => {
         if (userAgent.includes("HUAWEI")) {
             return 'huawei'
         } else if (userAgent.includes("Android")) {
-            // alert('ancok')
             return 'android'
         } else if (userAgent.includes("iPhone")) {
             return 'iphone'
@@ -180,13 +179,26 @@ let Modal = (props) => {
                 .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
                 .replaceAll('{{list_data}}',temp)
     
-                let w = window.open()
-                w.document.write(newdoc)
-                setTimeout(function(){
-                    w.print()
-                    w.close()    
-                    closeModal()
-                },500)
+                let osUser = cekOs()
+                if(osUser=='pc'){
+                    let w = window.open()
+                    w.document.write(newdoc)
+
+                    setTimeout(function(){
+                        w.print()
+                        w.close()    
+                        closeModal()
+                    },500)
+                }else{
+                    var opt = {
+                        margin:       0.5,
+                        filename:     'surat_lamarankerja_'+namaPengguna()+'.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 1},
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    }
+                    html2pdf().set(opt).from(newdoc).save()
+                }
             })
         }
     }
@@ -255,7 +267,7 @@ let Modal = (props) => {
                 }else{
                     var opt = {
                         margin:       0.5,
-                        filename:     'myfile.pdf',
+                        filename:     'surat_resign_'+namaPengguna()+'.pdf',
                         image:        { type: 'jpeg', quality: 0.98 },
                         html2canvas:  { scale: 1},
                         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -306,14 +318,26 @@ let Modal = (props) => {
                 .replaceAll('{{nama_perusahaan}}',namaPerusahaan())
                 .replaceAll('{{tanda_tangan}}',neew)
 
-                let w = window.open()
-                w.document.write(newdoc)
+                let osUser = cekOs()
+                if(osUser=='pc'){
+                    let w = window.open()
+                    w.document.write(newdoc)
 
-                setTimeout(function(){
-                    w.print()
-                    w.close()    
-                    closeModal()
-                },500)
+                    setTimeout(function(){
+                        w.print()
+                        w.close()    
+                        closeModal()
+                    },500)
+                }else{
+                    var opt = {
+                        margin:       0.5,
+                        filename:     'surat_sakit_'+namaPengguna()+'.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 1},
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    }
+                    html2pdf().set(opt).from(newdoc).save()
+                }
             })
         }
     }
@@ -361,14 +385,26 @@ let Modal = (props) => {
                 .replaceAll('{{alasan}}',alasanIzin())
                 .replaceAll('{{tanda_tangan}}',neew)
 
-                let w = window.open()
-                w.document.write(newdoc)
+                let osUser = cekOs()
+                if(osUser=='pc'){
+                    let w = window.open()
+                    w.document.write(newdoc)
 
-                setTimeout(function(){
-                    w.print()
-                    w.close()    
-                    closeModal()
-                },500)
+                    setTimeout(function(){
+                        w.print()
+                        w.close()    
+                        closeModal()
+                    },500)
+                }else{
+                    var opt = {
+                        margin:       0.5,
+                        filename:     'surat_tidakmasukkerja_'+namaPengguna()+'.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 1},
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    }
+                    html2pdf().set(opt).from(newdoc).save()
+                }
             })
         }
     }
@@ -450,7 +486,7 @@ let Modal = (props) => {
                             Nama Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)} placeholder='ex. Gundala'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -458,7 +494,7 @@ let Modal = (props) => {
                             Tempat Lahir
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setTempatLahir(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setTempatLahir(e.target.value)} placeholder='ex. Malang'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -474,7 +510,7 @@ let Modal = (props) => {
                             Umur Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="number"  className="input" onChange={(e)=>setUmurPengguna(e.target.value)}/>
+                            <input type="number"  className="input" onChange={(e)=>setUmurPengguna(e.target.value)} placeholder='ex. 1000'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -482,7 +518,7 @@ let Modal = (props) => {
                             Pendidikan Terakhir
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setPendidikanTerakhir(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setPendidikanTerakhir(e.target.value)} placeholder='ex. S1'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -490,7 +526,7 @@ let Modal = (props) => {
                             Jurusan
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setJurusanPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setJurusanPengguna(e.target.value)} placeholder='ex. Teknik Informatika'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -498,7 +534,7 @@ let Modal = (props) => {
                             Universitas
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setUniversitasPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setUniversitasPengguna(e.target.value)} placeholder='ex. Universitas Brawijaya'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -506,7 +542,7 @@ let Modal = (props) => {
                             No Telp
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="number"  className="input" onChange={(e)=>setNoTelpPengguna(e.target.value)}/>
+                            <input type="number"  className="input" onChange={(e)=>setNoTelpPengguna(e.target.value)} placeholder='ex. 081312340987'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -514,7 +550,7 @@ let Modal = (props) => {
                             Email
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="email"  className="input" onChange={(e)=>setEmailPengguna(e.target.value)}/>
+                            <input type="email"  className="input" onChange={(e)=>setEmailPengguna(e.target.value)} placeholder='ex. gundala@putra.petir'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -522,7 +558,7 @@ let Modal = (props) => {
                             Alamat
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <textarea className="textarea" onChange={(e)=>setAlamatPengguna(e.target.value)}></textarea>
+                            <textarea className="textarea" onChange={(e)=>setAlamatPengguna(e.target.value)} placeholder='ex. Jl. Petir Gaspol 22'></textarea>
                         </div>
                     </div>
 
@@ -532,7 +568,7 @@ let Modal = (props) => {
                                 Berkas Lamaran
                             </div>
                             <div className="column is-flex is-align-items-center is-justify-content-center">
-                                <input type="text" className="input" ref={lamaranset}/>
+                                <input type="text" className="input" ref={lamaranset} placeholder='ex. CV, KTP, KK'/>
                             </div>
                             <div className="column">
                                 <button className="button is-primary has-text-weight-bold" onClick={()=>addBerkas(lamaranset.value)}>
@@ -578,7 +614,7 @@ let Modal = (props) => {
                             Nama Perusahaan
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)} placeholder='ex. PT. Marvel'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -586,7 +622,7 @@ let Modal = (props) => {
                             Kota Perusahaan
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setKotaPerusahaan(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setKotaPerusahaan(e.target.value)} placeholder='ex. Malang'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -594,15 +630,15 @@ let Modal = (props) => {
                             Asal Lowongan
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setAsalLowongan(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setAsalLowongan(e.target.value)} placeholder='ex. Website Jobstreet'/>
                         </div>
                     </div>
                     <div className="columns">
                         <div className="column is-3 is-flex is-align-items-center">
-                            Posisi
+                            Posisi/Bagian
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)} placeholder='ex. Hero'/>
                         </div>
                     </div>
                 </Show>
@@ -618,7 +654,7 @@ let Modal = (props) => {
                             Nama Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)} placeholder='ex. Gundala'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -626,7 +662,7 @@ let Modal = (props) => {
                             Jabatan Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)} placeholder='ex. Karyawan'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -634,7 +670,7 @@ let Modal = (props) => {
                             Posisi Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)} placeholder='ex. Hero'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -647,7 +683,7 @@ let Modal = (props) => {
                             Nama Perusahaan
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)} placeholder='ex. PT. Marvel'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -682,7 +718,7 @@ let Modal = (props) => {
                             Nama Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)} placeholder='ex. Gundala'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -690,15 +726,15 @@ let Modal = (props) => {
                             Jabatan Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)} placeholder='ex. Karyawan'/>
                         </div>
                     </div>
                     <div className="columns">
                         <div className="column is-3 is-flex is-align-items-center">
-                            Posisi Anda
+                            Posisi/Bagian Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)} placeholder='ex. Hero'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -738,7 +774,7 @@ let Modal = (props) => {
                             Alasan
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <textarea className="textarea" onChange={(e)=>setAlasanIzin(e.target.value)}></textarea>
+                            <textarea className="textarea" onChange={(e)=>setAlasanIzin(e.target.value)} placeholder='ex. Asah Ilmu Petir'></textarea>
                         </div>
                     </div>
                 </Show>
@@ -754,7 +790,7 @@ let Modal = (props) => {
                             Nama Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)} placeholder='ex. Gundala'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -762,7 +798,7 @@ let Modal = (props) => {
                             Jabatan Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setJabatanPengguna(e.target.value)} placeholder='ex. Karyawan'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -770,7 +806,7 @@ let Modal = (props) => {
                             Posisi Anda
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setPosisiDilamar(e.target.value)} placeholder='ex. Hero'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -778,7 +814,7 @@ let Modal = (props) => {
                             Tempat Lahir
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setTempatLahir(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setTempatLahir(e.target.value)} placeholder='ex. Malang'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -799,7 +835,7 @@ let Modal = (props) => {
                             Nama Perusahaan
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
-                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)}/>
+                            <input type="text"  className="input" onChange={(e)=>setNamaPerusahaan(e.target.value)} placeholder='ex. PT. Marvel'/>
                         </div>
                     </div>
                     <div className="columns">
@@ -828,7 +864,7 @@ let Modal = (props) => {
                         Kota Pembuatan Surat
                     </div>
                     <div className="column is-flex is-align-items-center is-justify-content-center">
-                        <input type="text"  className="input" onChange={(e)=>setKotaPembuatan(e.target.value)}/>
+                        <input type="text"  className="input" onChange={(e)=>setKotaPembuatan(e.target.value)} placeholder='ex. Malang'/>
                     </div>
                 </div>
                 <div className="columns">
