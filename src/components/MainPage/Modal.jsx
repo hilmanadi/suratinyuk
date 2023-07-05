@@ -30,6 +30,9 @@ let Modal = (props) => {
     let [tglAkhirIzin,setTglAkhirIzin] = createSignal('')
     let [tglPengunduranDiri,setTglPengunduranDiri] = createSignal('')
     let [alasanIzin,setAlasanIzin] = createSignal('')
+    let [namaSekolah,setNamaSekolah] = createSignal('')
+    let [namaKelas,setNamaKelas] = createSignal('')
+    let [namaOrangtua,setNamaOrangtua] = createSignal('')
 
     let cekOs = () =>{
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -278,7 +281,7 @@ let Modal = (props) => {
         }
     }
 
-    let suratSakit = async () => {
+    let suratSakitKerja = async () => {
         if(namaPengguna()==''){
             toasted('Kolom Nama Pengguna Wajib Diisi')
         }else if(jabatanPengguna()==''){
@@ -297,7 +300,7 @@ let Modal = (props) => {
             toasted('Tanggal Pembuatan Wajib Diisi')
         }else{
             let neew = signaturepads.toDataURL('image/png')
-            await fetch('./templatesuratsakit.html')
+            await fetch('./templatesuratsakitkerja.html')
             .then(response=>{
                 return response.text()
             })
@@ -399,6 +402,138 @@ let Modal = (props) => {
                     var opt = {
                         margin:       0.5,
                         filename:     'surat_tidakmasukkerja_'+namaPengguna()+'.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 1},
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    }
+                    html2pdf().set(opt).from(newdoc).save()
+                }
+            })
+        }
+    }
+
+
+    let suratSakitSekolah = async () => {
+        if(namaPengguna()==''){
+            toasted('Kolom Nama Wajib Diisi')   
+        }else if(alamatPengguna()==''){
+            toasted('Kolom Alamat Wajib Diisi')
+        }else if(namaSekolah()==''){
+            toasted('Kolom Jabatan Wajib Diisi')
+        }else if(namaKelas()==''){
+            toasted('Kolom Posisi Wajib Diisi')
+        }else if(tglAwalSakit()==''){
+            toasted('Tanggal Awal Wajib Diisi')
+        }else if(tglAkhirSakit()==''){
+            toasted('Tanggal Akhir Wajib Diisi')
+        }else if(kotaPembuatan()==''){
+            toasted('Kota Pembuatan Wajib Diisi')
+        }else if(tanggalPembuatan()==''){
+            toasted('Tanggal Pembuatan Wajib Diisi')
+        }else{
+            let neew = signaturepads.toDataURL('image/png')
+            await fetch('./templatesuratsakitsekolah.html')
+            .then(response=>{
+                return response.text()
+            })
+            .then(respdata=>{
+                let temptanggal = ''
+                if(tglAwalSakit()==tglAkhirSakit()){                    
+                    temptanggal = tglAwalSakit()
+                }else{
+                    temptanggal = tglAwalSakit() + ' - ' + tglAkhirSakit()
+                }
+                let newdoc = respdata
+                .replaceAll('{{nama_pengguna}}',namaPengguna())
+                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+                .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
+                .replaceAll('{{tanggal_sakit}}',temptanggal)
+                .replaceAll('{{nama_sekolah}}',namaSekolah())
+                .replaceAll('{{nama_kelas}}',namaKelas())
+                .replaceAll('{{tanda_tangan}}',neew)
+                .replaceAll('{{alamat}}',alamatPengguna())
+                .replaceAll('{{nama_orangtua}}',namaOrangtua())
+
+                let osUser = cekOs()
+                if(osUser=='pc'){
+                    let w = window.open()
+                    w.document.write(newdoc)
+
+                    setTimeout(function(){
+                        w.print()
+                        w.close()    
+                        closeModal()
+                    },500)
+                }else{
+                    var opt = {
+                        margin:       0.5,
+                        filename:     'surat_sakit_'+namaPengguna()+'.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 1},
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    }
+                    html2pdf().set(opt).from(newdoc).save()
+                }
+            })
+        }
+    }
+
+    let suratIzinSekolah = async () => {
+        if(namaPengguna()==''){
+            toasted('Kolom Nama Siswa Wajib Diisi')   
+        }else if(alamatPengguna()==''){
+            toasted('Kolom Alamat Siswa Wajib Diisi')
+        }else if(namaSekolah()==''){
+            toasted('Kolom Sekolah Siswa Wajib Diisi')
+        }else if(namaKelas()==''){
+            toasted('Kolom Kelas Siswa Wajib Diisi')
+        }else if(tglAwalSakit()==''){
+            toasted('Tanggal Awal Wajib Diisi')
+        }else if(tglAkhirSakit()==''){
+            toasted('Tanggal Akhir Wajib Diisi')
+        }else if(kotaPembuatan()==''){
+            toasted('Kota Pembuatan Wajib Diisi')
+        }else if(tanggalPembuatan()==''){
+            toasted('Tanggal Pembuatan Wajib Diisi')
+        }else{
+            let neew = signaturepads.toDataURL('image/png')
+            await fetch('./templatesuratizinsekolah.html')
+            .then(response=>{
+                return response.text()
+            })
+            .then(respdata=>{
+                let temptanggal = ''
+                if(tglAwalSakit()==tglAkhirSakit()){                    
+                    temptanggal = tglAwalSakit()
+                }else{
+                    temptanggal = tglAwalSakit() + ' - ' + tglAkhirSakit()
+                }
+                let newdoc = respdata
+                .replaceAll('{{nama_pengguna}}',namaPengguna())
+                .replaceAll('{{kota_pembuatan_surat}}',kotaPembuatan())
+                .replaceAll('{{tanggal_dibuat}}',tanggalPembuatan())
+                .replaceAll('{{tanggal_izin}}',temptanggal)
+                .replaceAll('{{nama_sekolah}}',namaSekolah())
+                .replaceAll('{{nama_kelas}}',namaKelas())
+                .replaceAll('{{tanda_tangan}}',neew)
+                .replaceAll('{{alamat}}',alamatPengguna())
+                .replaceAll('{{nama_orangtua}}',namaOrangtua())
+                .replaceAll('{{alasan}}',alasanIzin())
+
+                let osUser = cekOs()
+                if(osUser=='pc'){
+                    let w = window.open()
+                    w.document.write(newdoc)
+
+                    setTimeout(function(){
+                        w.print()
+                        w.close()    
+                        closeModal()
+                    },500)
+                }else{
+                    var opt = {
+                        margin:       0.5,
+                        filename:     'surat_sakit_'+namaPengguna()+'.pdf',
                         image:        { type: 'jpeg', quality: 0.98 },
                         html2canvas:  { scale: 1},
                         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -643,7 +778,7 @@ let Modal = (props) => {
                     </div>
                 </Show>
 
-                <Show when={modalType()=='izinsakit'}>
+                <Show when={modalType()=='izinsakitkerja'}>
                     <div className="columns">
                         <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
                             DATA DIRI
@@ -854,6 +989,159 @@ let Modal = (props) => {
                     
                 </Show>
 
+                <Show when={modalType()=='izinsakitsekolah'}>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DIRI SISWA
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)} placeholder='ex. Gundala'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Kelas Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaKelas(e.target.value)} placeholder='ex. XII A'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Sekolah Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaSekolah(e.target.value)} placeholder='ex. SMAN 100 Malang'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Alamat Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setAlamatPengguna(e.target.value)} placeholder='ex. Jalan Kanan Kiri Oke 212 Kav 100'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA ORANG TUA
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Orang Tua
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaOrangtua(e.target.value)} placeholder='ex. Wiro Sableng'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DETAIL SURAT
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Pengajuan Tanggal Sakit
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'awalsakit')}/>
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            -
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'akhirsakit')}/>
+                        </div>
+                    </div>
+                </Show>
+
+
+                <Show when={modalType()=='izintidakmasuksekolah'}>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DIRI SISWA
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaPengguna(e.target.value)} placeholder='ex. Gundala'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Kelas Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaKelas(e.target.value)} placeholder='ex. XII A'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Sekolah Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaSekolah(e.target.value)} placeholder='ex. SMAN 100 Malang'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Alamat Siswa
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setAlamatPengguna(e.target.value)} placeholder='ex. Jalan Kanan Kiri Oke 212 Kav 100'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Alasan
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <textarea className="textarea" onChange={(e)=>setAlasanIzin(e.target.value)} placeholder='ex. Keperluan Keluarga'></textarea>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA ORANG TUA
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Nama Orang Tua
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="text"  className="input" onChange={(e)=>setNamaOrangtua(e.target.value)} placeholder='ex. Wiro Sableng'/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
+                            DATA DETAIL SURAT
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Pengajuan Tanggal Izin
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'awalsakit')}/>
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            -
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'akhirsakit')}/>
+                        </div>
+                    </div>
+                </Show>
+
                 <div className="columns">
                     <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
                     DATA PEMBUATAN SURAT
@@ -897,14 +1185,24 @@ let Modal = (props) => {
                 <button class="button is-primary has-text-weight-bold" onClick={()=>lamaranKerja()}>Cetak Lamaran Kerja</button>
             </Show>
             <Show
-                when={modalType() == 'izinsakit'}
+                when={modalType() == 'izinsakitkerja'}
             >
-                <button class="button is-primary has-text-weight-bold" onClick={()=>suratSakit()}>Cetak Surat Sakit </button>
+                <button class="button is-primary has-text-weight-bold" onClick={()=>suratSakitKerja()}>Cetak Surat Sakit </button>
             </Show>
             <Show
                 when={modalType() == 'izintidakmasukkerja'}
             >
                  <button class="button is-primary has-text-weight-bold" onClick={()=>suratTidakMasukKerja()}>Cetak Surat Tdk Masuk Kerja </button>
+            </Show>
+            <Show
+                when={modalType() == 'izinsakitsekolah'}
+            >
+                 <button class="button is-primary has-text-weight-bold" onClick={()=>suratSakitSekolah()}>Cetak Surat Sakit Tdk Masuk Sekolah </button>
+            </Show>
+            <Show
+                when={modalType() == 'izintidakmasuksekolah'}
+            >
+                 <button class="button is-primary has-text-weight-bold" onClick={()=>suratIzinSekolah()}>Cetak Surat Izin Tdk Masuk Sekolah </button>
             </Show>
                 <button class="button is-warning has-text-weight-bold" onClick={()=>closeModal()}>Cancel</button>
             </footer>

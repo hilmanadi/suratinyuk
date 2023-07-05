@@ -2,7 +2,7 @@ import {createEffect,createSignal} from "solid-js"
 import Modal from "../MainPage/Modal";
 import ModalPreview from "../MainPage/ModalPreview";
 
-let ListSurat = () => {
+let ListSuratPekerjaan = () => {
     let [modalIsActive,setModalIsActive] = createSignal(false)
     let [modalPreviewIsActive,setModalPreviewIsActive] = createSignal(false)
     let [modalType,setModalType] = createSignal('')
@@ -10,9 +10,9 @@ let ListSurat = () => {
 
     let listItem = [
         {"name":"SURAT LAMARAN KERJA","action":"lamarkerja"},
-        {"name":"SURAT IZIN SAKIT","action":"izinsakit"},
+        {"name":"SURAT IZIN SAKIT KERJA","action":"izinsakitkerja"},
         {"name":"SURAT IZIN TIDAK MASUK KERJA","action":"izintidakmasukkerja"},
-        {"name":"SURAT RESIGN","action":"resign"},
+        {"name":"SURAT RESIGN KERJA","action":"resign"},
     ]
 
     let previewImage = (data)=>{
@@ -71,4 +71,4 @@ let ListSurat = () => {
     ) 
 }
 
-export default ListSurat
+export default ListSuratPekerjaan

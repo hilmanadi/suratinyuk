@@ -1,0 +1,87 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+            color:black;
+        }
+    </style>
+</head>
+<body style="padding:7.5px;margin:0;">
+    <div style="height: 3vh;width:100%;margin-right:5px;">
+        <div style="height: 100%;width:40%;float: right;display: flex;justify-content: flex-end;align-items: center;">
+            {{kota_pembuatan_surat}}, {{tanggal_dibuat}}
+        </div>
+    </div>
+ 
+    <div style="height:2.5vh;display: flex;align-items: center;margin-top:1.5em;">
+        Kepada Yth. 
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;">
+        Bapak/Ibu Guru Wali Kelas {{nama_kelas}}
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;">
+        {{nama_sekolah}}
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;margin-top:1.5em;">
+        Dengan Hormat,
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;">
+        Dengan ini saya selaku orang tua murid dari:
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;margin-top:1.5em;">
+        <div style="height: 100%;box-sizing: border-box;width: 15%;">
+            Nama 
+        </div>
+        <div style="height: 100%;box-sizing: border-box;width: 5%;">
+            : 
+        </div>
+        <div style="height: 100%;box-sizing: border-box;width: 80%;">
+            {{nama_pengguna}}
+        </div>
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;">
+        <div style="height: 100%;box-sizing: border-box;width: 15%;">
+            Kelas
+        </div>
+        <div style="height: 100%;box-sizing: border-box;width: 5%;">
+            : 
+        </div>
+        <div style="height: 100%;box-sizing: border-box;width: 80%;">
+            {{nama_kelas}}, {{nama_sekolah}}
+        </div>
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;">
+        <div style="height: 100%;box-sizing: border-box;width: 15%;">
+            Alamat
+        </div>
+        <div style="height: 100%;box-sizing: border-box;width: 5%;">
+            : 
+        </div>
+        <div style="height: 100%;box-sizing: border-box;width: 80%;">
+            {{alamat}}
+        </div>
+    </div>
+    <div style="height:3vh;display: flex;align-items: center;margin-top:1.5em;">
+        Dengan surat ini saya sampaikan, bahwa anak saya tersebut diatas tidak dapat mengikuti pelajaran seperti biasa pada tanggal {{tanggal_sakit}}, dikarenakan harus dirawat jalan karena sakit. Oleh karena itu, kami memohon pada Bapak/Ibu Guru Wali kelas {{nama_kelas}} agar memberikan izin.
+    </div>
+    <div style="height:2.5vh;display: flex;align-items: center;margin-top:1.5em;">
+        Demikian surat ini saya buat dengan sebenarnya, Atas perhatian dan pengertiannya Bapak/Ibu, saya ucapkan terima kasih.
+    </div>
+    <div style="height:20vh;margin-top:4em;width: 25%;float: right;margin-right:5px;">
+        <div style="width: 100%;height: 15%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
+            Hormat Saya
+        </div>
+        <div style="width: 100%;height: 15%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
+            Orang Tua Murid
+        </div>
+        <div style="width: 100%;height: 55%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
+            <img src="{{tanda_tangan}}" alt="" style="height: 100%;width: 100%;">
+        </div>
+        <div style="width: 100%;height: 15%;box-sizing: border-box;display: flex;align-items: center;justify-content: center;">
+            <u>{{nama_orangtua}}</u>
+        </div>
+    </div>
+</body>
