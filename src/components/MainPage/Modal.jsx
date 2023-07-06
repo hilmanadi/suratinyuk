@@ -255,6 +255,7 @@ let Modal = (props) => {
                 .replaceAll('{{tempat_lahir}}',tempatLahir())
                 .replaceAll('{{tanggal_lahir}}',tanggalLahir())
                 .replaceAll('{{alamat}}',alamatPengguna())
+                .replaceAll('{{alasan}}',alasanIzin())
 
                 .replaceAll('{{tanda_tangan}}',neew)
                 let osUser = cekOs()
@@ -958,6 +959,14 @@ let Modal = (props) => {
                         </div>
                         <div className="column is-flex is-align-items-center is-justify-content-center">
                             <input type="date"  className="input" onChange={(e)=>getTanggalDetail(e.target.value,'lahir')}/>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-3 is-flex is-align-items-center">
+                            Alasan
+                        </div>
+                        <div className="column is-flex is-align-items-center is-justify-content-center">
+                            <textarea className="textarea" onChange={(e)=>setAlasanIzin(e.target.value)} placeholder='ex. Keperluan Keluarga'></textarea>
                         </div>
                     </div>
                     <div className="columns">
