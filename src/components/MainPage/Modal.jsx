@@ -1186,7 +1186,7 @@ let Modal = (props) => {
             <Show
                 when={modalType() == 'resign'}
             >
-                <button class="button is-primary has-text-weight-bold" onClick={()=>reSign()}>Cetak Lamaran Kerja</button>
+                <button class="button is-primary has-text-weight-bold" onClick={()=>reSign()}>Cetak Surat Resign</button>
             </Show>
             <Show
                 when={modalType() == 'lamarkerja'}
