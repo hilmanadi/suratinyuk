@@ -23,17 +23,17 @@ let MainPage = () => {
                             <div className="column">
                                 <div className="columns">
                                     <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-1 has-text-centered-mobile">
-                                        {headerContent}
+                                        <h1><b>{headerContent}</b></h1>
                                     </div>
                                 </div>
                                 <div className="columns">
                                     <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold is-size-4">
-                                        {bodyContent}
+                                        <h2><b>{bodyContent}</b></h2>
                                     </div>
                                 </div>
                                 <div className="columns">
                                     <div className="column is-flex is-align-items-center is-justify-content-center has-text-weight-bold">
-                                        {footerContent}
+                                        <h3><b>{footerContent}</b></h3>
                                     </div>
                                 </div>
                             </div>

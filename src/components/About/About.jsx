@@ -11,15 +11,15 @@ let About = () => {
                 <div className="column">
                     <article class="message is-warning">
                         <div class="message-header">
-                            <p>&#9888; WARNING  &#9888;</p>
+                            <h1><b>&#9888; WARNING  &#9888;</b></h1>
                         </div>
                         <div class="message-body">
                             <ol>
                                 <li>
-                                    Hati-hati dalam pengisian masukan user, dikarenakan bila berkas sudah pada proses cetak, semua data yang ada dalam masukan user akan dihapus.
+                                    <h2>Hati-hati dalam pengisian masukan user, dikarenakan bila berkas sudah pada proses cetak, semua data yang ada dalam masukan user akan dihapus.</h2>
                                 </li>
                                 <li>
-                                    Hati-hati ketika akan melakukan tanda tangan, dikarenakan form tanda tangan tidak bisa di reset untuk saat ini.
+                                    <h2>Hati-hati ketika akan melakukan tanda tangan, dikarenakan form tanda tangan tidak bisa di reset untuk saat ini.</h2>
                                 </li>
                             </ol>
                         </div>
@@ -28,12 +28,12 @@ let About = () => {
             </div>
             <article class="message is-danger">
                 <div class="message-header">
-                    <p>Reminder</p>
+                    <h1><b>Reminder</b></h1>
                 </div>
                 <div class="message-body">
                     <ol>
                         <li>
-                            Aplikasi ini tidak menyimpan data pribadi anda satu huruf pun, tidak ada database yang digunakan pada aplikasi ini, murni data dari input user kemudian di reset.
+                            <h2>Aplikasi ini tidak menyimpan data pribadi anda satu huruf pun, tidak ada database yang digunakan pada aplikasi ini, murni data dari input user kemudian di reset.</h2>
                         </li>
                     </ol>
                 </div>
@@ -42,10 +42,10 @@ let About = () => {
                 <div className="column">
                     <article class="message is-info">
                         <div class="message-header">
-                            <p>Tujuan Aplikasi</p>
+                            <h1><b>Tujuan Aplikasi</b></h1>
                         </div>
                         <div class="message-body has-text-weight-bold">
-                            <p>Aplikasi ini ditujukan dengan maksud untuk mempermudah user dalam pembuatan surat-surat, seperti Surat Lamaran Kerja, Surat Izin Tidak Masuk Kerja, Surat Izin Sakit, Surat Resign, dll</p>
+                            <h2>Aplikasi ini ditujukan dengan maksud untuk mempermudah user dalam pembuatan surat-surat, seperti Surat Lamaran Kerja, Surat Izin Tidak Masuk Kerja, Surat Izin Sakit, Surat Resign, dll</h2>
                         </div>
                     </article>
                 </div>
@@ -62,12 +62,12 @@ let About = () => {
                                    <div className="column">
                                         <div className="columns">
                                             <div className="column is-flex is-align-items-center is-justify-content-center has-text-centered-mobile has-text-weight-bold is-size-5">
-                                                Developer
+                                                <h1><b>Developer</b></h1>
                                             </div>
                                         </div>
                                         <div className="columns">
                                             <div className="column is-flex is-align-items-center is-justify-content-center">
-                                                Hilman Adi K.
+                                                <h2>Hilman Adi K.</h2>
                                             </div>
                                         </div>
                                    </div>
@@ -76,12 +76,12 @@ let About = () => {
                                     <div className="column">
                                         <div className="columns">
                                             <div className="column is-flex is-justify-content-center is-align-items-center has-text-centered-mobile has-text-weight-bold is-size-5">
-                                                Mail
+                                                <h1><b>Mail</b></h1>
                                             </div>
                                         </div>
                                         <div className="columns">
                                             <div className="column is-flex is-align-items-center is-justify-content-center has-text-centered-mobile">
-                                                hilmanadi1995@gmail.com
+                                                <h2>hilmanadi1995@gmail.com</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@ let About = () => {
                                     <div className="column">
                                         <div className="columns">
                                             <div className="column is-flex is-justify-content-center is-align-items-center has-text-centered-mobile has-text-weight-bold is-size-5">                                                
-                                                My Social
+                                                <h1><b>My Social</b></h1>
                                             </div>  
                                         </div>
                                         <div className="columns">

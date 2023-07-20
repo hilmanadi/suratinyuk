@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>https://suratinyuk.com/</loc>
-        <lastmod>2023-07-01</lastmod>
+        <lastmod>2023-07-20T03:21:55+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://suratinyuk.com/index.html</loc>
         <image:image>
-        <image:loc>https://suratinyuk.com/facebook.png</image:loc>
+            <image:loc>https://suratinyuk.com/facebook.png</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/github.png</image:loc>
+            <image:loc>https://suratinyuk.com/github.png</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/hak.png</image:loc>
+            <image:loc>https://suratinyuk.com/hak.png</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/instagram.png</image:loc>
+            <image:loc>https://suratinyuk.com/instagram.png</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/izinsakitkerja.PNG</image:loc>
+            <image:loc>https://suratinyuk.com/izinsakitkerja.PNG</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/izinsakitsekolah.PNG</image:loc>
+            <image:loc>https://suratinyuk.com/izinsakitsekolah.PNG</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/izintidakmasukkerja.PNG</image:loc>
+            <image:loc>https://suratinyuk.com/izintidakmasukkerja.PNG</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/izintidakmasuksekolah.PNG</image:loc>
+            <image:loc>https://suratinyuk.com/izintidakmasuksekolah.PNG</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/lamarkerja.png</image:loc>
+            <image:loc>https://suratinyuk.com/lamarkerja.png</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/resign.png</image:loc>
+            <image:loc>https://suratinyuk.com/resign.png</image:loc>
         </image:image>
         <image:image>
-        <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
+            <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
         </image:image>
     </url>
 </urlset>
