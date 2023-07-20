@@ -95,13 +95,6 @@ let About = () => {
                                         </div>
                                         <div className="columns">
                                             <div className="column is-flex is-align-items-center is-justify-content-center has-text-centered-mobile">
-                                                <a href="https://github.com/hilmanadi">
-                                                    <figure class="image is-64x64">
-                                                        <img src="./github.png"/>
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div className="column is-flex is-align-items-center is-justify-content-center has-text-centered-mobile">
                                                 <a href="https://www.instagram.com/hilmaanadi/">
                                                     <figure class="image is-64x64">
                                                         <img src="./instagram.png"/>
