@@ -23,7 +23,7 @@ const MainPage = lazy(async () => {
   return import("./components/MainPage/MainPage");
 })
 
-function App() {
+let App = () => {
   let [listPages,setListPages] = createSignal('')
 
   createEffect(()=>{
