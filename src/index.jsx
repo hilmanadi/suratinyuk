@@ -21,10 +21,6 @@ const WhoSuratinContent = lazy(async () => {
     return import("./components/Konten/WhoSuratinContent")
 })
 
-const KeunggulanSuratinContent = lazy(async () => {
-    return import("./components/Konten/KeunggulanSuratinContent")
-})
-
 const TutorialSuratinContent = lazy(async () => {
     return import("./components/Konten/TutorialSuratinContent")
 })
@@ -39,7 +35,6 @@ render(
                     <Route path="/whysuratin" component={WhySuratinContent}/>
                     <Route path="/whensuratin" component={WhenSuratinContent}/>
                     <Route path="/whosuratin" component={WhoSuratinContent}/>
-                    <Route path="/keunggulansuratin" component={KeunggulanSuratinContent}/>
                     <Route path="/tutorialsuratin" component={TutorialSuratinContent}/>
                 </Routes>
             </Router>

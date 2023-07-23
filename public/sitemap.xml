@@ -42,4 +42,34 @@
             <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
         </image:image>
     </url>
+    <url>
+        <loc>https://suratinyuk.com/whatsuratin</loc>
+        <image:image>
+            <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://suratinyuk.com/whysuratin</loc>
+        <image:image>
+            <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://suratinyuk.com/whensuratin</loc>
+        <image:image>
+            <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://suratinyuk.com/whosuratin</loc>
+        <image:image>
+            <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://suratinyuk.com/tutorialsuratin</loc>
+        <image:image>
+            <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
+        </image:image>
+    </url>
 </urlset>

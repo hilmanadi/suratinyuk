@@ -1,5 +1,5 @@
 import { createEffect,createSignal } from "solid-js";
-import {Router,Route,Routes,A} from "@solidjs/router";
+import {A} from "@solidjs/router";
 
 let Content = () =>{
     return(
@@ -23,11 +23,6 @@ let Content = () =>{
             <div className="columns">
                 <div className="column is-full p-3 is-flex is-align-items-center is-justify-content-center">
                     <A href="/whosuratin">Siapa Pengguna Surat-in Yuk?</A>
-                </div>
-            </div>
-            <div className="columns">
-                <div className="column is-full p-3 is-flex is-align-items-center is-justify-content-center">
-                    <A href="/keunggulansuratin">Keunggulan Surat-in Yuk!</A>
                 </div>
             </div>
             <div className="columns">
