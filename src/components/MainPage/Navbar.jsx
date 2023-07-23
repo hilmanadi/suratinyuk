@@ -23,7 +23,7 @@ let Navbar = (props) => {
   }
 
   createEffect(()=>{
-    console.log('navbar')
+
   })
 
   return (
