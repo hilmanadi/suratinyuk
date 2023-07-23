@@ -2,6 +2,7 @@ import { createEffect, createSignal, Switch, Match, lazy } from "solid-js";
 
 import Navbar from "./components/MainPage/Navbar";
 import Loading from "./components/Loading/Loading";
+import AdComponent from "./components/Ads/AdComponent";
 
 const About = lazy(async () => {
   return import("./components/About/About");
@@ -31,26 +32,27 @@ let App = () => {
 
   return (
     <>
-    <Navbar fromChild={setListPages}></Navbar>
-    <Suspense fallback={<Loading/>}>
-      <Switch fallback={<MainPage/>}>
-        <Match when={listPages()=='about'} >
-          <About/>
-        </Match>
-        <Match when={listPages()=='listsuratpekerjaan'}>
-          <ListSuratPekerjaan/>
-        </Match>
-        <Match when={listPages()=='listsuratsekolah'}>
-          <ListSuratSekolah/>
-        </Match>
-        <Match when={listPages()=='mainpage'}>
-          <MainPage/>
-        </Match>
-        <Match when={listPages()=='content'}>
-          <Content/>
-        </Match>
-      </Switch>
-    </Suspense>
+      <Navbar fromChild={setListPages}></Navbar>
+      <Suspense fallback={<Loading/>}>
+        <Switch fallback={<MainPage/>}>
+          <Match when={listPages()=='about'} >
+            <About/>
+          </Match>
+          <Match when={listPages()=='listsuratpekerjaan'}>
+            <ListSuratPekerjaan/>
+          </Match>
+          <Match when={listPages()=='listsuratsekolah'}>
+            <ListSuratSekolah/>
+          </Match>
+          <Match when={listPages()=='mainpage'}>
+            <MainPage/>
+          </Match>
+          <Match when={listPages()=='content'}>
+            <Content/>
+          </Match>
+        </Switch>
+      </Suspense>
+      <AdComponent/>
     </>
   );
 }
