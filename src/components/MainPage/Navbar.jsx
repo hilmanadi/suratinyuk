@@ -30,7 +30,7 @@ let Navbar = (props) => {
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item has-text-weight-bold" onClick={()=>menuClick('mainpage')}>
-          <img src="./suratinyuk.png" alt="" /> SURAT-IN YUK!
+          <img src="./suratinyuk.png" alt="suratinyuk_picture" /> SURAT-IN YUK!
         </a>
         <a role="button" class={`navbar-burger ${isActiveBurger() ? "is-active" : "" }`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={()=>activatedModal()}>
           <span aria-hidden="true"></span>
@@ -42,7 +42,6 @@ let Navbar = (props) => {
       <div id="navbarBasicExample" class={`navbar-menu ${isActiveBurger() ? "is-active": "" }`}>
         <div class="navbar-start">
           <For each={listMenuNavbar}>
-            
             {(data,index)=>
             <Switch fallback={<p>Nothin Menu Here</p>}>
                 <Match when={data.menu == "List Surat"} >
@@ -67,11 +66,9 @@ let Navbar = (props) => {
                     {data.menu}
                   </a>
                 </Match>
-
             </Switch>
             }
           </For>
-         
         </div>
       </div>
     </nav>

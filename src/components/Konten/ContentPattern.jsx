@@ -17,7 +17,7 @@ const ContentPatterns = (props) => {
                 <div className="columns">
                     <div className="column is-full is-flex is-align-items-center is-justify-content-center">
                         <figure class="image is-128x128">
-                            <img src="/suratinyuk.png"/>
+                            <img src="/suratinyuk.png" alt="suratinyuk_picture"/>
                         </figure>
                     </div>
                 </div>

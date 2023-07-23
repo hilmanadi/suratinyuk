@@ -34,9 +34,9 @@ let ListSuratPekerjaan = () => {
             <Show when={modalPreviewIsActive()}>
                 <ModalPreview fromParent={modalPreviewIsActive()} fromParentType={modalType()} fromChildPreview={setModalPreviewIsActive}></ModalPreview>
             </Show>
-            <section class="hero is-fullheight-with-navbar is-fluid">
-                    <div class="hero-body is-flex is-align-items-center is-justify-content-center" >
-                        <div class="container is-fluid p-5" style={{'height':'67.5vh','overflow-y':'auto','border':'solid 3.5px black','border-radius':'7.5px'}} >
+            {/* <section class="hero is-fullheight-with-navbar is-fluid"> */}
+                    {/* <div class="hero-body is-flex is-align-items-center is-justify-content-center" > */}
+                        <div class="container is-fluid p-5">
                         <For each={listItem}>
                             {(data,index)=>
                                 <div class="card mb-2 mt-2">
@@ -65,8 +65,8 @@ let ListSuratPekerjaan = () => {
                             }
                         </For>                    
                         </div>
-                    </div>
-            </section>
+                    {/* </div> */}
+            {/* // </section> */}
         </>
     ) 
 }

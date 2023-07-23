@@ -17,7 +17,7 @@ let ModalPreview = (props) => {
             <div class="modal-background"></div>
             <div class="modal-content">
                 <p class="image is-square">
-                    <img src={imagePath()} alt=""/>
+                    <img src={imagePath()} alt="contoh_picture"/>
                 </p>
             </div>
             <button class="modal-close is-large" aria-label="close" onClick={(e)=>closeModal()}></button>

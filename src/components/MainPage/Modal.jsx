@@ -271,7 +271,7 @@ let Modal = (props) => {
                 }else{
                     var opt = {
                         margin:       0.5,
-                        filename:     'surat_resign_'+namaPengguna()+'.pdf',
+                        filename:     'surat_resignkerja_'+namaPengguna()+'.pdf',
                         image:        { type: 'jpeg', quality: 0.98 },
                         html2canvas:  { scale: 1},
                         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -335,7 +335,7 @@ let Modal = (props) => {
                 }else{
                     var opt = {
                         margin:       0.5,
-                        filename:     'surat_sakit_'+namaPengguna()+'.pdf',
+                        filename:     'surat_sakitkerja_'+namaPengguna()+'.pdf',
                         image:        { type: 'jpeg', quality: 0.98 },
                         html2canvas:  { scale: 1},
                         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -468,7 +468,7 @@ let Modal = (props) => {
                 }else{
                     var opt = {
                         margin:       0.5,
-                        filename:     'surat_sakit_'+namaPengguna()+'.pdf',
+                        filename:     'surat_sakit_sekolah_'+namaPengguna()+'.pdf',
                         image:        { type: 'jpeg', quality: 0.98 },
                         html2canvas:  { scale: 1},
                         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -534,7 +534,7 @@ let Modal = (props) => {
                 }else{
                     var opt = {
                         margin:       0.5,
-                        filename:     'surat_sakit_'+namaPengguna()+'.pdf',
+                        filename:     'surat_izin_sekolah_'+namaPengguna()+'.pdf',
                         image:        { type: 'jpeg', quality: 0.98 },
                         html2canvas:  { scale: 1},
                         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
