@@ -6,7 +6,8 @@ let Navbar = (props) => {
   let listMenuNavbar = [
     {"menu" : "About","action":"about"},
     {"menu" : "List Surat"},
-    {"menu" : "Konten","action":"content"}
+    {"menu" : "Konten","action":"content"},
+    {"menu" : "Artikel","action":"article"}
   ]
 
   let listSubMenuNavbar = [

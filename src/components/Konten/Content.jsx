@@ -6,6 +6,11 @@ let Content = () =>{
         <>
         <div className="container p-3">
             <div className="columns">
+                <div className="column p-3 p-3 is-flex is-align-items-center is-justify-content-center">
+                    <h1 className="title is-1">Daftar Konten</h1>
+                </div>
+            </div>
+            <div className="columns">
                 <div className="column is-full p-3 is-flex is-align-items-center is-justify-content-center">
                     <A href="/whatsuratin">Apa Itu Surat-in Yuk?</A>
                 </div>
@@ -23,11 +28,6 @@ let Content = () =>{
             <div className="columns">
                 <div className="column is-full p-3 is-flex is-align-items-center is-justify-content-center">
                     <A href="/whosuratin">Siapa Pengguna Surat-in Yuk?</A>
-                </div>
-            </div>
-            <div className="columns">
-                <div className="column is-full p-3 is-flex is-align-items-center is-justify-content-center">
-                    <A href="/tutorialsuratin">Tata Cara Surat-in Yuk!</A>
                 </div>
             </div>
         </div>

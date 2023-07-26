@@ -4,6 +4,9 @@ import Navbar from "./components/MainPage/Navbar";
 import Loading from "./components/Loading/Loading";
 import AdComponent from "./components/Ads/AdComponent";
 
+const Article = lazy(async () =>{
+  return import("./components/Article/Article")
+})
 const About = lazy(async () => {
   return import("./components/About/About");
 })
@@ -49,6 +52,9 @@ let App = () => {
           </Match>
           <Match when={listPages()=='content'}>
             <Content/>
+          </Match>
+          <Match when={listPages()=='article'}>
+            <Article/>
           </Match>
         </Switch>
       </Suspense>

@@ -5,6 +5,15 @@ import App from './App';
 import {Router,Route,Routes} from "@solidjs/router";
 import  './assets/css/bulma.min.css';
 
+
+const TandaTanganDigital = lazy(async () => {
+    return import("./components/Article/TandaTanganDigital")
+})
+
+const SuratDigital = lazy(async () => {
+    return import("./components/Article/SuratDigital")
+})
+
 const WhatSuratinContent = lazy(async () =>{
     return import("./components/Konten/WhatSuratinContent");
 })
@@ -20,11 +29,6 @@ const WhenSuratinContent = lazy(async () => {
 const WhoSuratinContent = lazy(async () => {
     return import("./components/Konten/WhoSuratinContent")
 })
-
-const TutorialSuratinContent = lazy(async () => {
-    return import("./components/Konten/TutorialSuratinContent")
-})
-
 render(
     () => 
         (
@@ -35,7 +39,8 @@ render(
                     <Route path="/whysuratin" component={WhySuratinContent}/>
                     <Route path="/whensuratin" component={WhenSuratinContent}/>
                     <Route path="/whosuratin" component={WhoSuratinContent}/>
-                    <Route path="/tutorialsuratin" component={TutorialSuratinContent}/>
+                    <Route path="/suratdigital" component={SuratDigital}/>
+                    <Route path="/tandatangandigital" component={TandaTanganDigital}/>
                 </Routes>
             </Router>
         ),

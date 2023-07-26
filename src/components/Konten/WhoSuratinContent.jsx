@@ -9,7 +9,7 @@ const WhenSuratinContent = () => {
     return(
         <>
             <Suspense fallback={<Loading/>}>
-                <NavbarContent/>
+                <NavbarContent fromParentType="Content"/>
                 <ContentPatterns 
                     fromParentType="whosuratin" 
                     fromParentTitle="Siapa Pengguna Surat-in Yuk!" 

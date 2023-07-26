@@ -67,9 +67,21 @@
         </image:image>
     </url>
     <url>
-        <loc>https://suratinyuk.com/tutorialsuratin</loc>
+        <loc>https://suratinyuk.com/suratdigital</loc>
         <image:image>
             <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
         </image:image>
+    </url>
+    <url>
+        <loc>https://suratinyuk.com/tandatangandigital</loc>
+        <image:image>
+            <image:loc>https://suratinyuk.com/suratinyuk.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://suratinyuk.com/ads.txt</loc>
+    </url>
+    <url>
+        <loc>https://suratinyuk.com/robots.txt</loc>
     </url>
 </urlset>

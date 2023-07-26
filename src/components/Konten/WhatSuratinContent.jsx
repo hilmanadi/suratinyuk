@@ -1,14 +1,16 @@
 import {lazy} from "solid-js"
 import NavbarContent from "../MainPage/NavbarContent"
 import Loading from "../Loading/Loading"
+
 const ContentPatterns = lazy(async () => {
     return import("./ContentPattern");
 })
+
 const WhatSuratinContent = () => {
     return(
         <>
             <Suspense fallback={<Loading/>}>
-                <NavbarContent/>
+                <NavbarContent fromParentType="Content"/>
                 <ContentPatterns 
                     fromParentType={"whatsuratincontent"} 
                     fromParentTitle={"Apa Sih Aplikasi Surat-in Yuk! ?"} 

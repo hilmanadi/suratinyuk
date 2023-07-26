@@ -8,7 +8,7 @@ const WhenSuratinContent = () => {
     return(
         <>
             <Suspense fallback={<Loading/>}>
-                <NavbarContent/>
+                <NavbarContent fromParentType="Content"/>
                 <ContentPatterns
                     fromParentType="whensuratin"
                     fromParentTitle="Kapan Harus Menggunakan Aplikasi Surat-in Yuk!"
