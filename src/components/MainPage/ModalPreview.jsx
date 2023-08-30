@@ -9,7 +9,7 @@ let ModalPreview = (props) => {
     }
     createEffect(()=>{
         setIsActive(props.fromParent)
-        setImagePath('./'+props.fromParentType+'.PNG')
+        setImagePath('./'+props.fromParentType+'.png')
     })
     return (
         <>
